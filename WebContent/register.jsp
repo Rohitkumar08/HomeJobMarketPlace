@@ -13,19 +13,23 @@
 <body>
 <center>
 
-<form>
+<form action="registerServlet" method="POST">
 <table border="2" width="50%" style="background-color:salmon">
 <tr><th colspan="2">Registration form:</th></tr>
 <tr><td>First Name:</td><td> <input type = "text" name="name" placeholder="Enter name"></td></tr>
 <tr><td>Mobile no: </td><td><input type = "text" name="mobile" placeholder="Enter Mobile no"></td></tr>
 <tr><td>Email: </td><td><input type = "text" name="email" placeholder="Enter email id"></td></tr>
+<tr><td>password: </td><td><input type = "text" name="password" placeholder="Enter password"></td></tr>
 <tr><td>Address:</td><td><input type = "textarea" name="address" placeholder="Enter address"></td></tr>
 
 <tr><td>Member type:</td><td>
 	<input type="radio" name="memberType" id ="frst" value="Seeker" checked> Seeker	
 	<input type="radio" name="memberType" id = "sec" value="Sitter"> Sitter
  </td></tr>
+ <c:set var="inputedType" value="${param.memberType}"></c:set> 
    
+ <input type ="hidden" name="memberType" value="${inputedType}">
+  
    
 <tbody id ="div1">
 	<tr><td>No of Childs:</td><td><input type = "number" name="noOfChilds" placeholder="Enter no of childs"></td></tr>

@@ -7,6 +7,28 @@
 <title>Insert title here</title>
 </head>
 <body>
+<center>
+<form action="createJobServlet" method="POST">
+<table border="2" width="50%" style="background-color:salmon">
+<tr><th colspan="2">CREATE A NEW JOB</th></tr>
 
+<tr><td>Job Title:</td><td> <input type = "text" name="jobTitle" placeholder="Enter Job-Title"></td></tr>
+<tr><td>Start Date: </td><td><input type = "date" name="startDate" placeholder="Enter Start date(\"dd/MM/yyyy\"):"></td></tr>
+<tr><td>End Date:</td><td><input type = "date" name="endDate" placeholder="Enter end date"></td></tr>
+<tr><td>Start Time: </td><td><input type = "text" name="startTime" placeholder="Enter start time"></td></tr>
+<tr><td>End Time:</td><td><input type = "text" name="endTime" placeholder="Enter end time"></td></tr>
+<tr><td>Pay Per Hour:</td><td><input type = "number" name="payPerHour" placeholder="Enter pay per hour"></td></tr>
+
+<tr><td colspan="2" align="right" ><input type="submit" value="submit" style="font-size:7pt;"></td></tr>
+
+
+
+
+
+</table>
+</form>
+
+
+</center>
 </body>
 </html>

@@ -7,6 +7,7 @@ import java.sql.SQLException;
 
 import com.bean.Member;
 import com.bean.Sitter;
+import com.bean.Seeker;
 
 
 
@@ -20,13 +21,14 @@ public class UserData {
 	
 	public boolean putUserData(Member mem){
 		 
-		String sql = "insert into users(uname, phone,uemail,utype) values(?,?,?,?)";
+		String sql = "insert into users(uname, phone,uemail,utype,upassword) values(?,?,?,?,?)";
 		try {
 			ps = connect.prepareStatement(sql);
 			ps.setString(1, mem.getFirstName());
 			ps.setString(2, mem.getPhone());
 			ps.setString(3, mem.getEmail());
 			ps.setString(4, mem.getMemberType());
+			ps.setString(5, mem.getPassword());
 			
 			ps.executeUpdate();
 			System.out.println("******successfully registered*********");
@@ -88,4 +90,28 @@ public class UserData {
 		
 		
 	}
+	
+	public void registerSeeker(int uid, Seeker seeker) {
+		// TODO Auto-generated method stub
+		String sql = "insert into seeker values(?, ?, ?)";
+		try {
+			ps= connect.prepareStatement(sql);
+			ps.setInt(1, uid);
+			ps.setInt(2, seeker.getNoOfChilds());
+			ps.setString(3, seeker.getSpouseName());
+			
+			ps.executeUpdate();
+			System.out.println("*****Seekers details inserted******");
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+	}
+	
+	
+	
 }

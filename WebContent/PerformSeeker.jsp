@@ -7,6 +7,13 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<center>
+<table border="2" width="50%" style="background-color:salmon">
+<tr><th>WELCOME YOU ARE A SEEKER</th></tr>
+<tr><td><a href="createJob.jsp">Create a new Job</a></td></tr>
+<tr><td><a href="update.jsp">Update a Job</a></td></tr>
+<tr><td><a href="deleteJob.jsp">Delete a job</a></td></tr>
+</table>
+</center>
 </body>
 </html>
