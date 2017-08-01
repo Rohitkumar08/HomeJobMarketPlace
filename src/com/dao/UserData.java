@@ -7,6 +7,7 @@ import java.sql.SQLException;
 
 import com.bean.Member;
 import com.bean.Sitter;
+import com.service.FactoryUtil;
 import com.bean.Seeker;
 
 
@@ -14,6 +15,7 @@ import com.bean.Seeker;
 
 public class UserData {
 	
+	Member mem = (Member) FactoryUtil.mapClassInstance.get(FactoryUtil.MEMBER);
 	
 	private DBConnection con=new DBConnection();
 	private Connection connect= con.getconnection(); 
@@ -90,6 +92,29 @@ public class UserData {
 		
 		
 	}
+	public String getPassword(String email){
+		
+		String sql = "select upassword from users where uemail = ?";
+		String pwd="";
+		try{
+			
+			 ps = connect.prepareStatement(sql);
+			 ps.setString(1, email);
+			 ResultSet rs = ps.executeQuery();
+			 while(rs.next()){
+				 pwd = rs.getString("upassword");
+				 System.out.println(pwd);
+				
+			 }
+			
+		}catch(SQLException e){
+			System.out.println("password error");
+			return null;
+		}
+		return pwd;
+		
+		
+	}
 	
 	public void registerSeeker(int uid, Seeker seeker) {
 		// TODO Auto-generated method stub
@@ -111,7 +136,32 @@ public class UserData {
 		
 		
 	}
-	
+
+	public void getUserDetails(String email) {
+		// TODO Auto-generated method stub
+		
+		
+			String uType=null;
+			String sql = "select * from users where uemail= ?";
+			
+			try {
+				ps= connect.prepareStatement(sql);
+				ps.setString(1, email);
+				ResultSet rs = ps.executeQuery();
+				while(rs.next()){
+					Member mem = (Member) FactoryUtil.mapClassInstance.get(FactoryUtil.MEMBER);
+					System.out.println(rs.getString("utype"));
+					mem.setMemberType(rs.getString("utype"));
+					mem.setEmail(rs.getString("uemail"));
+					mem.setFirstName(rs.getString("uname"));
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			
+	}
 	
 	
 }

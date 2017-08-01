@@ -5,28 +5,33 @@ import java.util.HashMap;
 
 public class FactoryUtil {
 	
-	static String UserData;
-	static String Member;
-	static String Seeker;
-	static String Sitter;
-	static String Jobs;
-	static String MemberServiceImp;
+	public final static String USERDATA="userData";
+	public final static String MEMBER="member";
+	public final static String SEEKER="seeker";
+	public final static String 	SITTER="sitter";
+	public final static String JOBS="jobs";
+	public final static String MEMBERSERVICEIMP="memberServiceImp";
+	public final static String JOBSERVICEIMP="jobServiceImp";
+	public final static String JOBSDATA="jobsData";
 	public static HashMap<String, Object> mapClassInstance = new HashMap<>();
 	
-	public static void create(){
+	static {
 		
-		 mapClassInstance.put(UserData, new UserData());
-		 mapClassInstance.put(Member, new Member());
-		 mapClassInstance.put(Seeker, new Seeker());
-		 mapClassInstance.put(Sitter, new Sitter());
-		 mapClassInstance.put(Jobs, new Jobs());
-		 mapClassInstance.put(MemberServiceImp, new MemberServiceImp());
-		
+		 mapClassInstance.put(USERDATA, new UserData());
+		 mapClassInstance.put(MEMBER, new Member());
+		 mapClassInstance.put(SEEKER, new Seeker());
+		 mapClassInstance.put(SITTER, new Sitter());
+		 mapClassInstance.put(JOBS, new Jobs());
+		 mapClassInstance.put(MEMBERSERVICEIMP, new MemberServiceImp());
+		 mapClassInstance.put(JOBSERVICEIMP, new JobServiceImp());
+		 mapClassInstance.put(JOBSDATA, new JobsData());
 	}
-	public static<T> T getInstance(String className){
-		return (T) mapClassInstance.get(className);
-		
-	}
-	
+//	public static  <T> T getInstance(String className){
+//		
+//		System.out.println("*****************************");
+//		return (T) mapClassInstance.get(className);
+//		
+//	}
+//	
 	
 }

@@ -9,24 +9,13 @@
 </head>
 <body>
 <center>
-<table border="2" style="background-color:salmon">
+<c:import url="header.jsp"></c:import>
 
-<tr><th colspan="2">LIST OF ALL JOBS</th></tr>
-
-	<c:forEach items="${jobs}" var ="job">
-
-		<tr>
-		
-			<td><c:out value="${job.getJobTitle()}"></c:out></td>
-			
-		</tr>
-	
-	</c:forEach>
-</table>
-
-
-
-
+<h2 style="font-color:red">YOU ARE NOT AUTHORIZED TO DELETE THIS JOB...!!!!</h2>
+<h3><b>CHOSE ONLY THE JOB WHICH IS CREATED BY YOU<b></b></h3>
+<a href="deleteJobServlet"><b>GO BACK.....</b></a>
 </center>
+
+
 </body>
 </html>

@@ -1,6 +1,7 @@
 package com.servlet;
 
 import java.io.IOException;
+
 import java.io.PrintWriter;
 import com.service.*;
 
@@ -23,16 +24,9 @@ import com.service.MemberServiceImp;
 @WebServlet("/registerServlet")
 public class registerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	String UserData;
-	String MemberServiceImp;
-	String Seeker;
-	String Member;
-	String Sitter;
-	UserData ud = FactoryUtil.getInstance(UserData);
-	MemberServiceImp svc= FactoryUtil.getInstance(MemberServiceImp);
-     Seeker seeker = FactoryUtil.getInstance(Seeker);  
-     Member mem= FactoryUtil.getInstance(Member);
-     Sitter sitter = FactoryUtil.getInstance(Sitter);
+	
+	
+    
      
     /**
      * @see HttpServlet#HttpServlet()
@@ -49,9 +43,19 @@ public class registerServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
+				
+		UserData ud = (UserData) FactoryUtil.mapClassInstance.get(FactoryUtil.USERDATA);
 		
-		
-		mem.setFirstName(request.getParameter("name"));;
+		MemberServiceImp svc= (MemberServiceImp) FactoryUtil.mapClassInstance.get(FactoryUtil.MEMBERSERVICEIMP);
+	     Seeker seeker =(Seeker) FactoryUtil.mapClassInstance.get(FactoryUtil.SEEKER);  
+	    Member mem= (Member) FactoryUtil.mapClassInstance.get(FactoryUtil.MEMBER);
+	     //Member mem = new Member();
+	     Sitter sitter = (Sitter) FactoryUtil.mapClassInstance.get(FactoryUtil.SITTER);
+		 System.out.println(ud);
+		 
+		 
+		mem.setFirstName(request.getParameter("name"));
+		System.out.println(mem.getFirstName());
 		mem.setPhone(request.getParameter("mobile"));
 		mem.setEmail(request.getParameter("email"));
 		mem.setPassword(request.getParameter("password"));

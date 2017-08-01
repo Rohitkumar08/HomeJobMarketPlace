@@ -18,7 +18,7 @@
 <tr><th colspan="2">Registration form:</th></tr>
 <tr><td>First Name:</td><td> <input type = "text" name="name" placeholder="Enter name"></td></tr>
 <tr><td>Mobile no: </td><td><input type = "text" name="mobile" placeholder="Enter Mobile no"></td></tr>
-<tr><td>Email: </td><td><input type = "text" name="email" placeholder="Enter email id"></td></tr>
+<tr><td>Email: </td><td><input type = "email" name="email" placeholder="Enter email id"></td></tr>
 <tr><td>password: </td><td><input type = "text" name="password" placeholder="Enter password"></td></tr>
 <tr><td>Address:</td><td><input type = "textarea" name="address" placeholder="Enter address"></td></tr>
 

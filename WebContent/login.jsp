@@ -8,7 +8,7 @@
 </head>
 <body>
 <center>
-<form >
+<form action = "LoginServlet" method ="POST">
 <table border="2" width="50%" style="background-color:salmon">
 <tr><th colspan="2">LOG IN</th></tr>
 <tr><td>Enter Email:</td> <td><input type="text" name="userEmail" placeholder="Enter email id"></td></tr>

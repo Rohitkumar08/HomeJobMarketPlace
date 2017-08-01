@@ -7,7 +7,7 @@ import com.dao.UserData;
 
 public class MemberServiceImp {
 
-	UserData ud = new UserData();
+	UserData ud = (UserData) FactoryUtil.mapClassInstance.get(FactoryUtil.USERDATA);
 	
 	public boolean doRegister(Member mem) {
 		// TODO Auto-generated method stub
@@ -28,6 +28,16 @@ public class MemberServiceImp {
 		ud.registerSeeker(uid, seeker);
 	}
 	
+	public boolean validateUser(String email, String pwd){
+		String originalPwd = ud.getPassword(email);
+		
+		if(pwd.equals(originalPwd)){
+			ud.getUserDetails(email);
+			return true;
+		}
 	
-
+		return false;
+	}
+	
+	
 }

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@taglib uri = "http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -7,12 +8,15 @@
 <title>Insert title here</title>
 </head>
 <body>
+<c:import url="header.jsp"></c:import>
+
 <center>
 <table border="2" width="50%" style="background-color:salmon">
-<tr><th>WELCOME YOU ARE A SEEKER</th></tr>
+
+<tr><th>WELCOME AS A SEEKER</th></tr>
 <tr><td><a href="createJob.jsp">Create a new Job</a></td></tr>
-<tr><td><a href="update.jsp">Update a Job</a></td></tr>
-<tr><td><a href="deleteJob.jsp">Delete a job</a></td></tr>
+<tr><td><a href="updateJobServlet">Update a Job</a></td></tr>
+<tr><td><a href="deleteJobServlet">Delete a job</a></td></tr>
 </table>
 </center>
 </body>
