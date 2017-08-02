@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-        <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-    
+    <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -9,13 +8,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-<c:import url="headerSitter.jsp"></c:import>
-<center>
+<span style="float:right">
+<b><a href="PerformSitter.jsp"><img src="images/propert_icon.jpg"/></a> Hi..<c:out value="${sessionScope.uname}"/>| <a href="logout">Logout</a></b>
 
-<h2 style="font-color: red">SUCCESSFULLY APPLIED FOR THIS JOB...!!!!</h2>
-
-<a href="ApplyNewJobServlet"><b>GO BACK.....</b></a>
-</center>
+</span>
 
 </body>
 </html>

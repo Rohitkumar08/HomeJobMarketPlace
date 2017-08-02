@@ -11,7 +11,7 @@
 <c:import url="headerSitter.jsp"></c:import>
 
 <center>
-<form action="ApplyJobServlet" method="POST">
+<form action="DeleteUserApp" method="POST">
 <table border="2" style="background-color:salmon">
 
 <tr><th colspan="5">LIST OF ALL JOBS</th></tr>
@@ -25,7 +25,7 @@
 			<td><c:out  value="${job.getStartDate()}"></c:out></td>
 			<td><c:out  value="${job.getEndDate()}"></c:out></td>
 			<td><c:out  value="${job.getPayPerHour()}"></c:out></td>
-			<td><input type="submit" name="inputed" value="apply" onclick="this.value += ' <c:out  value="${job.getJobTitle()}"/>'"></td>
+			<td><input type="submit" name="inputed" value="delete" onclick="this.value += ' <c:out  value="${job.getJobTitle()}"/>'"></td>
 		</tr>
 	
 	</c:forEach>

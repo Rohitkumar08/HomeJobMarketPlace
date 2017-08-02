@@ -241,6 +241,37 @@ public class JobsData {
 		
 		return jobs;
 	}
+	public List<Jobs> getAppliedJobs(int uid) {
+		// TODO Auto-generated method stub
+		String sql = "select * from Jobs where job_id IN (select jobId from Application where member_id=?)";
+         List<Jobs>  jobApplied= new ArrayList<>();
+		
+		try {
+			ps= connect.prepareStatement(sql);
+			ps.setInt(1, uid);
+			ResultSet rs = ps.executeQuery();
+			
+			while(rs.next()){
+				Jobs jb=new Jobs();
+				jb.setJobTitle(rs.getString("job_title"));
+				jb.setStartDate(rs.getString("start_date"));
+				System.out.println("*************"+jb.getStartDate());
+				jb.setEndDate(rs.getString("end_date"));
+				jb.setStartTime(rs.getString("start_time"));
+				jb.setEndTime(rs.getString("end_time"));
+				jb.setPayPerHour(rs.getInt("pay_per_hour"));
+				
+				jobApplied.add(jb);
+			
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return jobApplied;
+	
+	}
 
 	public Jobs findDetailsOfJob(String jobTitle) {
 		// TODO Auto-generated method stub
@@ -353,8 +384,29 @@ public class JobsData {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return false;
 		}
-		return false;
+		
+	}
+
+	public boolean deleteThisAppDao(String jobTitle, int uid, int jobId) {
+		// TODO Auto-generated method stub
+		String sql = "delete from Application where jobId =(select job_id from Jobs where job_title=?) AND member_id=?";
+		try {
+			ps= connect.prepareStatement(sql);
+			ps.setString(1, jobTitle);
+			ps.setInt(2, uid);
+			ps.executeUpdate();
+			return true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			
+			e.printStackTrace();
+			return false;			
+		}
+		
+		
+		
 	}
 
 }

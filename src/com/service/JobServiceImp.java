@@ -32,6 +32,12 @@ public List<Jobs> updateJob(int uid){
 		return jobs;
 	
 }
+public List<Jobs> deletejobApp(int uid){
+	JobsData jd= (JobsData) FactoryUtil.mapClassInstance.get(FactoryUtil.JOBSDATA);
+	List<Jobs> jobs=jd.getAppliedJobs(uid);
+		return jobs;
+	
+}
 public Jobs getJobDetails(String jobTitle) {
 	// TODO Auto-generated method stub
 	JobsData jd= (JobsData) FactoryUtil.mapClassInstance.get(FactoryUtil.JOBSDATA);
@@ -72,7 +78,18 @@ public boolean appliedForThisJob(String jobTitle, int uid) {
 	// TODO Auto-generated method stub
 	JobsData jd =(JobsData) FactoryUtil.mapClassInstance.get(FactoryUtil.JOBSDATA);
 	int jobId=jd.getJobId(jobTitle);
+	System.out.println(jobId +"************" + jobTitle);
 	if(jd.applyThisJobDao(jobTitle, uid, jobId))
+		return true;
+	else
+		return false;
+}
+public boolean deleteThisJobApp(String jobTitle, int uid) {
+	// TODO Auto-generated method stub
+	JobsData jd =(JobsData) FactoryUtil.mapClassInstance.get(FactoryUtil.JOBSDATA);
+	int jobId=jd.getJobId(jobTitle);
+	System.out.println(jobId +"************" + jobTitle);
+	if(jd.deleteThisAppDao(jobTitle, uid, jobId))
 		return true;
 	else
 		return false;

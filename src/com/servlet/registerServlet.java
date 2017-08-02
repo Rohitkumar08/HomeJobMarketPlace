@@ -53,7 +53,7 @@ public class registerServlet extends HttpServlet {
 	     //Member mem = new Member();
 	     Sitter sitter = (Sitter) FactoryUtil.mapClassInstance.get(FactoryUtil.SITTER);
 		 System.out.println(ud);
-		 
+		 System.out.println("********** "+request.getParameter("memberType"));
 		 
 		mem.setFirstName(request.getParameter("name"));
 		System.out.println(mem.getFirstName());

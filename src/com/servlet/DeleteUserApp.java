@@ -14,16 +14,17 @@ import com.service.FactoryUtil;
 import com.service.JobServiceImp;
 
 /**
- * Servlet implementation class ApplyJobServlet
+ * Servlet implementation class DeleteUserApp
  */
-@WebServlet("/ApplyJobServlet")
-public class ApplyJobServlet extends HttpServlet {
+@WebServlet("/DeleteUserApp")
+public class DeleteUserApp extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-      JobServiceImp jbs= (JobServiceImp) FactoryUtil.mapClassInstance.get(FactoryUtil.JOBSERVICEIMP); 
+    JobServiceImp jbs= (JobServiceImp) FactoryUtil.mapClassInstance.get(FactoryUtil.JOBSERVICEIMP); 
+ 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ApplyJobServlet() {
+    public DeleteUserApp() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -41,22 +42,21 @@ public class ApplyJobServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-	
-		
+		response.setContentType("text/html");
 		HttpSession session = request.getSession(); 
 		int uid=(int) session.getAttribute("uid");
 		
 		String selected[]= request.getParameterValues("inputed");
-		String jobTitle=selected[0].substring(6);
-			System.out.println(selected[0].substring(6));
-			if(jbs.appliedForThisJob(jobTitle,uid)){
-				
-				RequestDispatcher rd = request.getRequestDispatcher("successApp.jsp");
+		String jobTitle=selected[0].substring(7);
+			System.out.println(selected[0].substring(7));
+			if(jbs.deleteThisJobApp(jobTitle,uid)){
+
+				RequestDispatcher rd = request.getRequestDispatcher("successDeletedApp.jsp");
 				rd.forward(request, response);
 			}
 			else
 			{
-				RequestDispatcher rd = request.getRequestDispatcher("errorApp.jsp");
+				RequestDispatcher rd = request.getRequestDispatcher("errorDeletionApp.jsp");
 				rd.forward(request, response);
 			}
 			
