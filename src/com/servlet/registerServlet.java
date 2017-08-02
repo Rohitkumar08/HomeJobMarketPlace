@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.bean.Member;
 import com.bean.Seeker;
@@ -67,6 +68,10 @@ public class registerServlet extends HttpServlet {
 		if(registered){
 			String uType = mem.getMemberType();
 			int uid = ud.getID(mem.getEmail());
+			HttpSession session = request.getSession();
+			session.setAttribute("uname", mem.getFirstName());
+		
+	        session.setAttribute("uid",uid);  
 			if(uType.equals("Sitter")){
 				sitter.setExpectedPay(Integer.parseInt(request.getParameter("expectedPay")));
 				sitter.setYearsOfExperience(Integer.parseInt(request.getParameter("yoe")));
@@ -92,6 +97,8 @@ public class registerServlet extends HttpServlet {
 		
 	}
 		else{
+			RequestDispatcher rd= request.getRequestDispatcher("errorLogin.jsp");
+			rd.forward(request, response);
 			System.out.println("****EMAIL ID ALREADY EXISTS****");
 		}
 		

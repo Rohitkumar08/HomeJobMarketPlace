@@ -1,29 +1,29 @@
 package com.servlet;
 
 import java.io.IOException;
+import java.util.List;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
+import com.bean.Jobs;
+import com.dao.JobsData;
 import com.service.FactoryUtil;
-import com.service.JobServiceImp;
 
 /**
- * Servlet implementation class deletedJob
+ * Servlet implementation class ApplyNewJobServlet
  */
-@WebServlet("/deletedJob")
-public class deletedJob extends HttpServlet {
+@WebServlet("/ApplyNewJobServlet")
+public class ApplyNewJobServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-      JobServiceImp jbs= (JobServiceImp) FactoryUtil.mapClassInstance.get(FactoryUtil.JOBSERVICEIMP); 
+	JobsData jbd= (JobsData) FactoryUtil.mapClassInstance.get(FactoryUtil.JOBSDATA);  
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public deletedJob() {
+    public ApplyNewJobServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -42,24 +42,15 @@ public class deletedJob extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		response.setContentType("text/html");
-//		String job= request.getParameter("jobToBeDeleted");
-//		System.out.println(job);
-		HttpSession session = request.getSession(); 
-		int uid=(int) session.getAttribute("uid");
-		
-		String selected[]= request.getParameterValues("inputed");
-		String email=selected[0].substring(7);
-			System.out.println(selected[0].substring(7));
-			
-		if(jbs.deleteJob(uid,email)){
-			RequestDispatcher rd = request.getRequestDispatcher("successDeletionOfJob.jsp");
-			rd.forward(request, response);
-		}
-		else{
-			RequestDispatcher rd = request.getRequestDispatcher("errorInDeletionOfJob.jsp");
-			rd.forward(request, response);
-		}
+		try {
+            List<Jobs> job = jbd.listAllJobs();
+            System.out.println(job.get(0).getJobTitle());
+            request.setAttribute("jobs", job); 
+            System.out.println("skuvbwkuvchwouvwkuvhwifvgweifwkuvcwifbweufgewifebwu");
+            request.getRequestDispatcher("applyNewJob.jsp").forward(request, response);
+        } catch (Exception e) {
+            throw new ServletException("Cannot obtain jobs from DB", e);
+        }
 		
 	}
 

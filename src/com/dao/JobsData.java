@@ -128,13 +128,13 @@ public class JobsData {
 	
 	}
 
-	public boolean updateJobTitle(String job_title, String newJobTitle) {
+	public boolean updateJobTitle(String currentJobTitle, String newJobTitle) {
 		// TODO Auto-generated method stub
 		sql = "update Jobs set job_title =? where job_title = ?";
 		try {
 			ps = connect.prepareStatement(sql);
 			ps.setString(1, newJobTitle);
-			ps.setString(2, job_title);
+			ps.setString(2, currentJobTitle);
 			ps.executeUpdate();
 			return true;
 		} catch (SQLException e) {
@@ -272,6 +272,89 @@ public class JobsData {
 		}
 		return job;
 		
+	}
+
+	public boolean updateJobTitle(String newJobTitle) {
+		// TODO Auto-generated method stub
+		Jobs job = new Jobs();
+		sql = "update Jobs set job_title =? where job_title = ?";
+		try {
+			ps = connect.prepareStatement(sql);
+			ps.setString(1, newJobTitle);
+			System.out.println("****************"+ job.getJobTitle());
+			ps.setString(2, job.getJobTitle());
+			
+			ps.executeUpdate();
+			return true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+		
+		
+		
+	}
+	public int getExpectedPay(int user_id){
+		String sql = "select expected_pay from sitter where sitter_id = ?";
+		int expected_pay = 0;
+		try {
+			ps= connect.prepareStatement(sql);
+			ps.setInt(1, user_id);
+			ResultSet rs = ps.executeQuery();
+			
+			while(rs.next()){
+				expected_pay = rs.getInt("expected_pay");
+			}
+			return expected_pay;
+		  } catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return expected_pay;
+	}
+	
+	
+	public int getJobId(String jobTitle){
+		String sql = "select job_id from jobs where job_title = ?";
+		int jobId = 0;
+		try {
+			ps= connect.prepareStatement(sql);
+			ps.setString(1, jobTitle);
+			ResultSet rs = ps.executeQuery();
+			
+			while(rs.next()){
+				jobId = rs.getInt("job_id");
+			}
+			
+			return jobId;
+		  } catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return 1;
+	}
+
+	public boolean applyThisJobDao(String jobTitle, int uid, int jobId) {
+		// TODO Auto-generated method stub
+		int expected_pay=getExpectedPay(uid);
+		String sql = "insert into Application(jobId, Expected_pay, member_id) values(?, ? , ?)";
+		
+		try {
+			ps= connect.prepareStatement(sql);
+			ps.setInt(1, jobId);
+			ps.setInt(2, expected_pay);
+			ps.setInt(3, uid);
+			ps.executeUpdate();
+		
+			return true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
 	}
 
 }

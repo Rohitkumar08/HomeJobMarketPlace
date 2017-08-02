@@ -51,7 +51,8 @@ public class LoginServlet extends HttpServlet {
     		        session.setAttribute("uid",ud.getID(email));  
     		        ud.getUserDetails(email);
     		        session.setAttribute("uname",mem.getFirstName()); 
-    		        
+    		        session.setAttribute("uid", ud.getID(email));
+    		        System.out.println(session.getAttribute("uid"));
     				String uType=mem.getMemberType();
     				if(uType.equals("Seeker")){
     					RequestDispatcher rd = request.getRequestDispatcher("PerformSeeker.jsp");

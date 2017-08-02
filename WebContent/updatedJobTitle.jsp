@@ -8,10 +8,13 @@
 <title>Insert title here</title>
 </head>
 <body>
-<span style="float:right">
-<b><a href="PerformSeeker.jsp"><img src="images/propert_icon.jpg"/></a> Hi..<c:out value="${sessionScope.uname}"/>| <a href="logout">Logout</a></b>
+<c:import url="header.jsp"></c:import>
 
-</span>
+<center>
+SUCCESSFULLY UPDATED THE JOB TITLE...
+<a href="updateJobServlet">Go back</a>
 
+
+</center>
 </body>
 </html>

@@ -38,4 +38,47 @@ public Jobs getJobDetails(String jobTitle) {
 	Jobs jb=jd.findDetailsOfJob(jobTitle);
 	return jb;
 }
+public boolean updateCurrentTitle(String newTitle, String curentJobTitle) {
+	// TODO Auto-generated method stub
+//	if(email=="jobTitle"){
+//		jd.updateJobTitle(email);
+//	}
+//	if(email=="startDate"){
+//		updateStartDate(job.getJobTitle());
+//	}
+//	if(email=="endDate"){
+//		updateEndDate(job.getJobTitle());
+//	}
+//	if(email=="payPerHour"){
+//		updatePayPerHour(job.getJobTitle());
+//	}
+//
+//	Jobs jb = 
+//	
+//	if(.updateJobTitle(newTitle)){
+//		System.out.println("success");
+//		return true;
+//	}
+	JobsData jd= (JobsData) FactoryUtil.mapClassInstance.get(FactoryUtil.JOBSDATA);
+	if(jd.updateJobTitle(curentJobTitle, newTitle))
+		return true;
+	
+	return false;
+	
+	
+	
+}
+public boolean appliedForThisJob(String jobTitle, int uid) {
+	// TODO Auto-generated method stub
+	JobsData jd =(JobsData) FactoryUtil.mapClassInstance.get(FactoryUtil.JOBSDATA);
+	int jobId=jd.getJobId(jobTitle);
+	if(jd.applyThisJobDao(jobTitle, uid, jobId))
+		return true;
+	else
+		return false;
+}
+
+
+
+
 }

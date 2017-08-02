@@ -30,6 +30,11 @@
 	</natures>
 	<linkedResources>
 		<link>
+			<name>WebContent/images/property_icon.jpg</name>
+			<type>1</type>
+			<locationURI>PARENT-3-PROJECT_LOC/Downloads/property_icon.jpg</locationURI>
+		</link>
+		<link>
 			<name>WebContent/WEB-INF/lib/jstl-1.2.jar</name>
 			<type>1</type>
 			<locationURI>PARENT-3-PROJECT_LOC/Downloads/jstl-1.2.jar</locationURI>
