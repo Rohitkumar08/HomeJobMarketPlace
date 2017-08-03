@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 import com.bean.Member;
 import com.bean.Sitter;
@@ -161,6 +162,13 @@ public class UserData {
 			}
 			
 			
+	}
+	public List<Sitter> fetchApplicants(int uid, String jobTitle) {
+		// TODO Auto-generated method stub
+		
+		String sql= "select * from Application "
+		
+		return null;
 	}
 	
 	

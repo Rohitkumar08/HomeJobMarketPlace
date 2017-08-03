@@ -51,10 +51,19 @@ public class DeleteJobAppServlet extends HttpServlet {
 
 			try {
 	            List<Jobs> job = jbs.deletejobApp(uid);
-	            System.out.println(job.get(0).getJobTitle());
-	            request.setAttribute("jobs", job); 
-	            System.out.println("skuvbwkuvchwouvwkuvhwifvgweifwkuvcwifbweufgewifebwu");
-	            request.getRequestDispatcher("listOfAppliedJob.jsp").forward(request, response);
+	            if(job.size()!=0){
+	            	
+	            	
+	            	 System.out.println(job.get(0).getJobTitle());
+	 	            request.setAttribute("jobs", job); 
+	 	            System.out.println("skuvbwkuvchwouvwkuvhwifvgweifwkuvcwifbweufgewifebwu");
+	 	            request.getRequestDispatcher("listOfAppliedJob.jsp").forward(request, response);
+	            }
+	            else
+	            {
+	            	 request.getRequestDispatcher("errorListOfApp.jsp").forward(request, response);
+	            }
+	           
 	        } catch (Exception e) {
 	            throw new ServletException("Cannot obtain jobs from DB", e);
 	        }

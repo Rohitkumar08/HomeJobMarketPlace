@@ -1,13 +1,17 @@
 package com.service;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.bean.Jobs;
+import com.bean.Sitter;
 import com.dao.*;
+
 
 public class JobServiceImp {
 
+	Sitter sitter=(Sitter) FactoryUtil.mapClassInstance.get(FactoryUtil.SITTER);
 	public boolean newJob(int uid){
 		JobsData jd= (JobsData) FactoryUtil.mapClassInstance.get(FactoryUtil.JOBSDATA);
 		System.out.println(uid);
@@ -93,6 +97,21 @@ public boolean deleteThisJobApp(String jobTitle, int uid) {
 		return true;
 	else
 		return false;
+}
+public boolean updateJobDetails(Jobs jb, String oldJobTitle) {
+	// TODO Auto-generated method stub
+	JobsData jd =(JobsData) FactoryUtil.mapClassInstance.get(FactoryUtil.JOBSDATA);
+	if(jd.updateTheseJobDetails(jb,oldJobTitle))
+		return true;
+	else
+		return false;
+}
+
+public List<Sitter> showApplicants(int uid, String jobTitle){
+	UserData jd =(UserData) FactoryUtil.mapClassInstance.get(FactoryUtil.USERDATA);
+	List<Sitter> sitters = jd.fetchApplicants(uid,jobTitle);
+
+	return sitters;
 }
 
 

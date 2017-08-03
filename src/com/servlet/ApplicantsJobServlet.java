@@ -16,17 +16,17 @@ import com.service.FactoryUtil;
 import com.service.JobServiceImp;
 
 /**
- * Servlet implementation class updateJobServlet
+ * Servlet implementation class ApplicantsJobServlet
  */
-@WebServlet("/updateJobServlet")
-public class updateJobServlet extends HttpServlet {
+@WebServlet("/ApplicantsJobServlet")
+public class ApplicantsJobServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-   JobServiceImp jbs = (JobServiceImp) FactoryUtil.mapClassInstance.get(FactoryUtil.JOBSERVICEIMP);
-
+    JobsData jbd= (JobsData) FactoryUtil.mapClassInstance.get(FactoryUtil.JOBSDATA);
+    JobServiceImp jbs=(JobServiceImp) FactoryUtil.mapClassInstance.get(FactoryUtil.JOBSERVICEIMP);
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public updateJobServlet() {
+    public ApplicantsJobServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -44,19 +44,21 @@ public class updateJobServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		HttpSession session = request.getSession();
+
+		
+HttpSession session = request.getSession();
 		
 		int uid =(int) session.getAttribute("uid");
 		
 
 		try {
-            List<Jobs> job = jbs.updateJob(uid);
+            List<Jobs> job = jbs.updateJob(uid);		//gives all jobs created by him only
             if(job.size()!=0){
             	
             	  System.out.println(job.get(0).getJobTitle());
                   request.setAttribute("jobs", job); 
                   System.out.println("skuvbwkuvchwouvwkuvhwifvgweifwkuvcwifbweufgewifebwu");
-                  request.getRequestDispatcher("updateJob.jsp").forward(request, response);
+                  request.getRequestDispatcher("chooseJobForApp.jsp").forward(request, response);
             }
             else{
             	request.getRequestDispatcher("errorUpdateJob.jsp").forward(request, response);
@@ -65,9 +67,6 @@ public class updateJobServlet extends HttpServlet {
         } catch (Exception e) {
             throw new ServletException("Cannot obtain jobs from DB", e);
         }
-		
-		
-		
 	}
 
 }

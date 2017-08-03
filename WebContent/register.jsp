@@ -19,7 +19,7 @@
 	<tr><td>First Name:</td><td> <input type = "text" name="name" placeholder="Enter name" required></td></tr>
 	<tr><td>Mobile no: </td><td><input type = "text" name="mobile" placeholder="Enter Mobile no" required></td></tr>
 	<tr><td>Email: </td><td><input type = "email" name="email" placeholder="Enter email id" required></td></tr>
-	<tr><td>password: </td><td><input type = "text" name="password" placeholder="Enter password" required></td></tr>
+	<tr><td>password: </td><td><input type = "password" name="password" placeholder="Enter password" required></td></tr>
 	<tr><td>Address:</td><td><input type = "textarea" name="address" placeholder="Enter address" required></td></tr>
 	
 	<tr><td>Member type:</td><td>
@@ -38,13 +38,14 @@
 	
 	 <tbody id = "div2">
 		<tr><td>Expected pay:</td><td><input type = "number" name="expectedPay" placeholder="Enter expectedPay" ></td></tr>
-		<tr><td>Years OF experience:</td><td><input type = "number" name="yoe" placeholder="Enter years of experience" ></td></tr>
+		<tr><td>Years OF experience:</td><td><input type = "number" name="yoe" placeholder="Enter years of experience" 90></td></tr>
 	</tbody>
 	
 	<tr><td colspan="2" align="right" ><input type="submit" value="submit" style="font-size:7pt;"></td></tr>
 </table>
 </form>
-
+<h2>OR</h2>
+<a href="login.jsp"><b>Log In</b></a>
 </center>
 <script type="text/javascript" src="file.js"></script>
 </body>

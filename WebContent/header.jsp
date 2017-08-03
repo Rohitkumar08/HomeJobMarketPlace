@@ -8,8 +8,11 @@
 <title>Insert title here</title>
 </head>
 <body>
+<span style="float:left">
+<a href="PerformSeeker.jsp"><img src="images/images.jpeg" width="30%" height="50%"/></a>
+</span>
 <span style="float:right">
-<b><a href="PerformSeeker.jsp"><img src="images/propert_icon.jpg"/></a> Hi..<c:out value="${sessionScope.uname}"/>| <a href="logout">Logout</a></b>
+<b> Hi, <c:out value="${sessionScope.uname}"/>| <a href="logout">Logout</a></b>
 
 </span>
 

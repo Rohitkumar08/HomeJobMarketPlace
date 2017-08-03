@@ -8,6 +8,14 @@
 <title>Insert title here</title>
 </head>
 <body>
+<% 
+
+	if(session.getAttribute("uname")==null)
+		response.sendRedirect("error.jsp");
+
+
+
+%>
 <c:import url="headerSitter.jsp"></c:import>
 <center>
 <table border="2" width="50%" style="background-color:salmon">

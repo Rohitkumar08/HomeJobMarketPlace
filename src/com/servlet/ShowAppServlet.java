@@ -3,6 +3,7 @@ package com.servlet;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,23 +11,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.bean.Jobs;
-import com.dao.JobsData;
+import com.bean.Sitter;
 import com.service.FactoryUtil;
 import com.service.JobServiceImp;
 
 /**
- * Servlet implementation class updateJobServlet
+ * Servlet implementation class ShowAppServlet
  */
-@WebServlet("/updateJobServlet")
-public class updateJobServlet extends HttpServlet {
+@WebServlet("/ShowAppServlet")
+public class ShowAppServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-   JobServiceImp jbs = (JobServiceImp) FactoryUtil.mapClassInstance.get(FactoryUtil.JOBSERVICEIMP);
-
+	 JobServiceImp jbs=(JobServiceImp) FactoryUtil.mapClassInstance.get(FactoryUtil.JOBSERVICEIMP); 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public updateJobServlet() {
+    public ShowAppServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -44,29 +43,28 @@ public class updateJobServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		HttpSession session = request.getSession();
-		
-		int uid =(int) session.getAttribute("uid");
-		
-
-		try {
-            List<Jobs> job = jbs.updateJob(uid);
-            if(job.size()!=0){
-            	
-            	  System.out.println(job.get(0).getJobTitle());
-                  request.setAttribute("jobs", job); 
-                  System.out.println("skuvbwkuvchwouvwkuvhwifvgweifwkuvcwifbweufgewifebwu");
-                  request.getRequestDispatcher("updateJob.jsp").forward(request, response);
-            }
-            else{
-            	request.getRequestDispatcher("errorUpdateJob.jsp").forward(request, response);
-            }
-          
-        } catch (Exception e) {
-            throw new ServletException("Cannot obtain jobs from DB", e);
-        }
 		
 		
+		response.setContentType("text/html");
+//		String job= request.getParameter("jobToBeDeleted");
+//		System.out.println(job);
+		HttpSession session = request.getSession(); 
+		int uid=(int) session.getAttribute("uid");
+		
+		String selected[]= request.getParameterValues("inputed");
+		String jobTitle=selected[0].substring(17);
+			System.out.println(selected[0].substring(17));
+			
+			List<Sitter> applicants =jbs.showApplicants(uid,jobTitle);
+			
+//		if(jbs.showApp(uid,jobTitle)){
+//			RequestDispatcher rd = request.getRequestDispatcher("successDeletionOfJob.jsp");
+//			rd.forward(request, response);
+//		}
+//		else{
+//			RequestDispatcher rd = request.getRequestDispatcher("errorInDeletionOfJob.jsp");
+//			rd.forward(request, response);
+//		}
 		
 	}
 

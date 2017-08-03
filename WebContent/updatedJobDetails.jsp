@@ -11,7 +11,7 @@
 <c:import url="header.jsp"></c:import>
 
 <center>
-SUCCESSFULLY UPDATED THE JOB TITLE...
+SUCCESSFULLY UPDATED THE JOB...
 <a href="updateJobServlet">Go back</a>
 
 

@@ -18,14 +18,14 @@ import com.bean.Seeker;
 import com.bean.Sitter;
 import com.dao.UserData;
 import com.service.MemberServiceImp;
-
+import com.validations.*;
 /**
  * Servlet implementation class registerServlet
  */
 @WebServlet("/registerServlet")
 public class registerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
+	validation val=new validation();
 	
     
      
@@ -56,13 +56,31 @@ public class registerServlet extends HttpServlet {
 		 System.out.println("********** "+request.getParameter("memberType"));
 		 
 		mem.setFirstName(request.getParameter("name"));
-		System.out.println(mem.getFirstName());
 		mem.setPhone(request.getParameter("mobile"));
 		mem.setEmail(request.getParameter("email"));
 		mem.setPassword(request.getParameter("password"));
 		mem.setAdd(request.getParameter("address"));
 		mem.setMemberType(request.getParameter("memberType"));
 		System.out.println(mem.getMemberType());
+
+		if(!val.validateName())
+		{
+			RequestDispatcher rd= request.getRequestDispatcher("errorName.jsp");
+			rd.forward(request, response);
+		}
+		System.out.println(mem.getFirstName());
+		if(!val.validatePhone())
+		{
+			RequestDispatcher rd= request.getRequestDispatcher("errorPhoneNo.jsp");
+			rd.forward(request, response);
+		}
+		
+		if(!val.validateEmail())
+		{
+			RequestDispatcher rd= request.getRequestDispatcher("errorEmail.jsp");
+			rd.forward(request, response);
+		}
+		
 		
 		boolean registered=svc.doRegister(mem);
 		if(registered){

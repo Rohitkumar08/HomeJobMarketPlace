@@ -8,20 +8,28 @@
 <title>Insert title here</title>
 </head>
 <body>
+<% 
+
+	if(session.getAttribute("uname")==null)
+		response.sendRedirect("error.jsp");
+
+
+
+%>
 <c:import url="header.jsp"></c:import>
 
 <center>
 <form action = "updateJob" method="POST">
 <table border="2" style="background-color:salmon">
 
-<tr><th colspan="2">LIST OF ALL JOBS POSTED BY YOU</th></tr>
-
+<tr><th colspan="3">LIST OF ALL JOBS POSTED BY YOU</th></tr>
+<tr><td>JOB TITLE</td><td>STATUS</td></tr>
 	<c:forEach items="${jobs}" var ="job">
 
 		<tr>
 		
 			<td><c:out  value="${job.getJobTitle()}"></c:out></td>
-			
+			<td><c:out  value="${job.getStatus()}"></c:out></td>
 			<td><input type="submit" name="inputed" value="update" onclick="this.value += ' <c:out  value="${job.getJobTitle()}"/>'"></td>
 		</tr>
 	

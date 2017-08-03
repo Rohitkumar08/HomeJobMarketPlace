@@ -17,15 +17,15 @@ import com.service.JobServiceImp;
 /**
  * Servlet implementation class updateChoosenParameter
  */
-@WebServlet("/updateChoosenParameter")
-public class updateChoosenParameter extends HttpServlet {
+@WebServlet("/updateChoosenParameter_BACK")
+public class updateChoosenParameter_BACK extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	JobServiceImp jbs = (JobServiceImp) FactoryUtil.mapClassInstance.get(FactoryUtil.JOBSERVICEIMP);
-    Jobs job=(Jobs) FactoryUtil.mapClassInstance.get(FactoryUtil.JOBS);
+     JobServiceImp jbs = (JobServiceImp) FactoryUtil.mapClassInstance.get(FactoryUtil.JOBSERVICEIMP);
+     Jobs job=(Jobs) FactoryUtil.mapClassInstance.get(FactoryUtil.JOBS);
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public updateChoosenParameter() {
+    public updateChoosenParameter_BACK() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -43,40 +43,37 @@ public class updateChoosenParameter extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
 		response.setContentType("text/html");
-//		String selected[]= request.getParameterValues("inputed");
-//		String param=selected[0].substring(7);
-//		System.out.println(param);
-		job.setJobTitle(request.getParameter("jobTitle"));
-		job.setStartDate(request.getParameter("endDate"));
-		job.setEndDate(request.getParameter("startTime"));
-		job.setStartTime(request.getParameter("startTime"));
-		job.setEndTime(request.getParameter("endTime"));
-		job.setPayPerHour(Integer.parseInt(request.getParameter("payPerHour")));
-		job.setStatus(request.getParameter("status"));
+		String selected[]= request.getParameterValues("inputed");
+		String param=selected[0].substring(7);
+		System.out.println(param);
 		
-		String oldJobTitle=request.getParameter("oldJobTitle");
-		System.out.println(request.getParameter("oldJobTitle"));
+		String currentJobTitle=request.getParameter("currentJobTitle");
+		System.out.println(request.getParameter("currentJobTitle"));
 		
-		
+		Jobs job = jbs.getJobDetails(currentJobTitle);
 		HttpSession session = request.getSession();
-		session.setAttribute("oldJobTitle", oldJobTitle);
 		
-		
-	
-//		Jobs job = jbs.getJobDetails(currentJobTitle);
-		
-		
-		
+		session.setAttribute("currentJobTitle", job.getJobTitle());
 		//jbs.updateCurrentData(email);
-		if(jbs.updateJobDetails(job,oldJobTitle)){
+		if(param.equals("jobTitle")){
 			//jd.updateJobTitle(email);
 			System.out.println(request.getParameter("currentJobTitle"));
-			RequestDispatcher rd = request.getRequestDispatcher("updatedJobDetails.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("updateJobTitle.jsp");
 			rd.forward(request, response);
 		
 		}
+//		if(email=="startDate"){
+//			updateStartDate(job.getJobTitle());
+//		}
+//		if(email=="endDate"){
+//			updateEndDate(job.getJobTitle());
+//		}
+//		if(email=="payPerHour"){
+//			updatePayPerHour(job.getJobTitle());
+//		}
+		
+		
 	}
 
 }

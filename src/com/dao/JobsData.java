@@ -58,7 +58,7 @@ public class JobsData {
 	public List<Jobs> listAllJobs() {
 		// TODO Auto-generated method stub
 		
-		String sql = "select * from Jobs";
+		String sql = "select * from Jobs where status ='ACTIVE'";
 		List<Jobs>  jobs= new ArrayList<>();
 		
 		try {
@@ -86,7 +86,37 @@ public class JobsData {
 		return jobs;
 		
 	}
-	
+	public List<Jobs> listAllJobsForSeekers() {
+		// TODO Auto-generated method stub
+		
+		String sql = "select * from Jobs where status='ACTIVE' ";
+		List<Jobs>  jobs= new ArrayList<>();
+		
+		try {
+			ps= connect.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			
+			while(rs.next()){
+				//Jobs jb= (Jobs) FactoryUtil.mapClassInstance.get(FactoryUtil.JOBS);
+				Jobs jb=new Jobs();
+				jb.setJobTitle(rs.getString("job_title"));
+				jb.setStartDate(rs.getString("start_date"));
+				jb.setEndDate(rs.getString("end_date"));
+				jb.setStartTime(rs.getString("start_time"));
+				jb.setEndTime(rs.getString("end_time"));
+				jb.setPayPerHour(rs.getInt("pay_per_hour"));
+				jobs.add(jb);
+				System.out.println("inside dao"+jb.getJobTitle());
+				
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return jobs;
+		
+	}
 
 	public boolean deleteJob(String job_title, int uid) {
 		
@@ -196,7 +226,7 @@ public class JobsData {
 		}
 		if(posted_By == uid){
 			
-			sql = "delete from Jobs where job_title= ?";
+			sql = "update Jobs set status='INACTIVE' where job_title=?";
 			try {
 				ps = connect.prepareStatement(sql);
 				ps.setString(1, jobTitle);
@@ -218,7 +248,7 @@ public class JobsData {
 	public List<Jobs> fetchSeekerJobs(int uid) {
 		// TODO Auto-generated method stub
 		int posted_By=0;
-		sql = "select job_title from Jobs where posted_by= ?";
+		sql = "select job_title,status from Jobs where posted_by= ?";
 		List<Jobs> jobs= new ArrayList<>();
 		try {
 			ps = connect.prepareStatement(sql);
@@ -229,6 +259,7 @@ public class JobsData {
 				
 				Jobs jb=new Jobs();
 				jb.setJobTitle(rs.getString("job_title"));
+				jb.setStatus(rs.getString("status"));
 				jobs.add(jb);
 				System.out.println("inside dao"+jb.getJobTitle());
 				
@@ -291,6 +322,7 @@ public class JobsData {
 				jb.setStartTime(rs.getString("start_time"));
 				jb.setEndTime(rs.getString("end_time"));
 				jb.setPayPerHour(rs.getInt("pay_per_hour"));
+				jb.setStatus(rs.getString("status"));
 				//jobs.add(jb);
 				
 				System.out.println("inside dao"+jb.getJobTitle());
@@ -408,5 +440,33 @@ public class JobsData {
 		
 		
 	}
+
+	public boolean updateTheseJobDetails(Jobs job, String oldJobTitle) {
+		// TODO Auto-generated method stub
+		
+		sql = "update Jobs set job_title =?, start_date=?, end_date=?, pay_per_hour=?, status=? where job_title = ?";
+		try {
+			ps = connect.prepareStatement(sql);
+			ps.setString(1, job.getJobTitle());
+			ps.setString(2, job.getStartDate());
+			ps.setString(3, job.getEndDate());
+			ps.setInt(4, job.getPayPerHour());
+			ps.setString(5, job.getStatus());
+			System.out.println("****************"+ job.getJobTitle());
+			ps.setString(6, oldJobTitle);
+			
+			ps.executeUpdate();
+			return true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		
+		return false;
+	}
+
+	
 
 }

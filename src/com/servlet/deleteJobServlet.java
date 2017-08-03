@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.bean.Jobs;
 import com.dao.JobsData;
 import com.service.FactoryUtil;
+import com.service.JobServiceImp;
 
 /**
  * Servlet implementation class deleteJobServlet
@@ -20,7 +21,7 @@ import com.service.FactoryUtil;
 public class deleteJobServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     JobsData jbd= (JobsData) FactoryUtil.mapClassInstance.get(FactoryUtil.JOBSDATA);
-   
+   JobServiceImp jbs=(JobServiceImp) FactoryUtil.mapClassInstance.get(FactoryUtil.JOBSERVICEIMP);
     /**
      * @see HttpServlet#HttpServlet()
      */

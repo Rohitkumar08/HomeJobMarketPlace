@@ -8,13 +8,21 @@
 <title>Insert title here</title>
 </head>
 <body>
+<% 
+
+	if(session.getAttribute("uname")==null)
+		response.sendRedirect("error.jsp");
+
+
+
+%>
 <c:import url="headerSitter.jsp"></c:import>
 
 <center>
 <form action="ApplyJobServlet" method="POST">
 <table border="2" style="background-color:salmon">
 
-<tr><th colspan="5">LIST OF ALL JOBS</th></tr>
+<tr><th colspan="5">LIST OF CURRENTLY AVAILABLE JOBS</th></tr>
 <tr><td style="color:blue">JOB TITLE</td><td style="color:blue">START DATE</td><td style="color:blue">END DATE</td><td style="color:blue">PAY PER HOUR</td></tr>
 
 	<c:forEach items="${jobs}" var ="job">

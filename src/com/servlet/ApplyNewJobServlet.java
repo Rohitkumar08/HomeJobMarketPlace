@@ -43,7 +43,7 @@ public class ApplyNewJobServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		
 		try {
-            List<Jobs> job = jbd.listAllJobs();
+            List<Jobs> job = jbd.listAllJobsForSeekers();
             System.out.println(job.get(0).getJobTitle());
             request.setAttribute("jobs", job); 
             System.out.println("skuvbwkuvchwouvwkuvhwifvgweifwkuvcwifbweufgewifebwu");

@@ -8,13 +8,13 @@
 <title>Insert title here</title>
 </head>
 <body>
-<span style="float:left">
-<a href="PerformSitter.jsp"><img src="images/images.jpeg" width="30%" height="50%"/></a>
-</span>
-<span style="float:right">
-<b>Hi, <c:out value="${sessionScope.uname}"/>| <a href="logout">Logout</a></b>
+<c:import url="header.jsp"></c:import>
+<center>
 
-</span>
+
+<h2 style="color:red">YOU HAVENT'T CREATED ANY JOB YET...!!!!</h2>
+<a href="PerformSeeker.jsp"><b>GO BACK.....</b></a>
+</center>
 
 </body>
 </html>

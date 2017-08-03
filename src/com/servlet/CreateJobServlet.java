@@ -49,6 +49,7 @@ public class CreateJobServlet extends HttpServlet {
 		job.setStartTime(request.getParameter("startTime"));
 		job.setEndTime(request.getParameter("endTime"));
 		job.setPayPerHour(Integer.parseInt(request.getParameter("payPerHour")));
+		
 		HttpSession session = request.getSession();
 		
 		String email = mem.getEmail();
