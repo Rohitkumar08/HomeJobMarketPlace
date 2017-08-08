@@ -55,14 +55,15 @@ public class JobsData {
 		
 	}
 	
-	public List<Jobs> listAllJobs() {
+	public List<Jobs> listAllJobs(int uid) {
 		// TODO Auto-generated method stub
 		
-		String sql = "select * from Jobs where status ='ACTIVE'";
+		String sql = "select * from Jobs where posted_by=?";
 		List<Jobs>  jobs= new ArrayList<>();
 		
 		try {
 			ps= connect.prepareStatement(sql);
+			ps.setInt(1,uid);
 			ResultSet rs = ps.executeQuery();
 			
 			while(rs.next()){

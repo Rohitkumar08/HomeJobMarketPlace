@@ -1,8 +1,6 @@
 package com.servlet;
 
 import java.io.IOException;
-import java.util.List;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,22 +9,22 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.bean.Jobs;
-import com.dao.JobsData;
+import com.bean.Seeker;
 import com.service.FactoryUtil;
 import com.service.JobServiceImp;
+import com.service.MemberServiceImp;
 
 /**
- * Servlet implementation class deleteJobServlet
+ * Servlet implementation class ViewProfileServlet
  */
-@WebServlet("/deleteJobServlet")
-public class deleteJobServlet extends HttpServlet {
+@WebServlet("/ViewProfileServlet")
+public class ViewProfileServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    JobsData jbd= (JobsData) FactoryUtil.mapClassInstance.get(FactoryUtil.JOBSDATA);
-   JobServiceImp jbs=(JobServiceImp) FactoryUtil.mapClassInstance.get(FactoryUtil.JOBSERVICEIMP);
+	 MemberServiceImp mbs= (MemberServiceImp) FactoryUtil.mapClassInstance.get(FactoryUtil.MEMBERSERVICEIMP);
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public deleteJobServlet() {
+    public ViewProfileServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -36,7 +34,7 @@ public class deleteJobServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doPost(request, response);
+		doPost(request,response);
 	}
 
 	/**
@@ -44,21 +42,14 @@ public class deleteJobServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
+			
 		HttpSession session = request.getSession();
-		int uid= (int) session.getAttribute("uid");
-		try {
-            List<Jobs> job = jbd.listAllJobs(uid);
-            System.out.println(job.get(0).getJobTitle());
-            request.setAttribute("jobs", job); 
-            System.out.println("skuvbwkuvchwouvwkuvhwifvgweifwkuvcwifbweufgewifebwu");
-            request.getRequestDispatcher("deleteJob.jsp").forward(request, response);
-        } catch (Exception e) {
-            throw new ServletException("Cannot obtain jobs from DB", e);
-        }
+		int uid=(int) session.getAttribute("uid");
 		
 		
-		
+		Seeker seeker= mbs.fetchSeekerUserDetails(uid);
+		request.setAttribute("seeker", seeker);
+		  request.getRequestDispatcher("profileUpdateDetail.jsp").forward(request, response);
 		
 	}
 

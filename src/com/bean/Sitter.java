@@ -1,7 +1,7 @@
 package com.bean;
 
 
-public class Sitter {
+public class Sitter extends Member {
 	private int yearsOfExperience;
 	private int expectedPay;
 	

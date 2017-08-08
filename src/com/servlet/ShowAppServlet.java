@@ -52,10 +52,22 @@ public class ShowAppServlet extends HttpServlet {
 		int uid=(int) session.getAttribute("uid");
 		
 		String selected[]= request.getParameterValues("inputed");
-		String jobTitle=selected[0].substring(17);
-			System.out.println(selected[0].substring(17));
+		String jobTitle=selected[0].substring(16);
+			System.out.println(selected[0].substring(16));
 			
 			List<Sitter> applicants =jbs.showApplicants(uid,jobTitle);
+			if(applicants.size()!=0){
+				
+				System.out.println("*****************"+applicants.get(0).getFirstName());
+				
+				request.setAttribute("sitter", applicants);
+				request.getRequestDispatcher("allApplicants.jsp").forward(request, response);
+			}
+			else{
+				
+				request.getRequestDispatcher("noApplicants.jsp").forward(request, response);
+			}
+			
 			
 //		if(jbs.showApp(uid,jobTitle)){
 //			RequestDispatcher rd = request.getRequestDispatcher("successDeletionOfJob.jsp");

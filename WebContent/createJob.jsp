@@ -13,8 +13,6 @@
 	if(session.getAttribute("uname")==null)
 		response.sendRedirect("error.jsp");
 
-
-
 %>
 <c:import url="header.jsp"></c:import>
 <center>
@@ -30,10 +28,6 @@
 <tr><td>Pay Per Hour:</td><td><input type = "number" name="payPerHour" placeholder="Enter pay per hour"></td></tr>
 
 <tr><td colspan="2" align="right" ><input type="submit" value="submit" style="font-size:7pt;"></td></tr>
-
-
-
-
 
 </table>
 </form>

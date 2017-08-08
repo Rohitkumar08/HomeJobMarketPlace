@@ -13,8 +13,6 @@
 	if(session.getAttribute("uname")==null)
 		response.sendRedirect("error.jsp");
 
-
-
 %>
 <c:import url="header.jsp"></c:import>
 <center>

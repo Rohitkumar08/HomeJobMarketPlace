@@ -20,31 +20,31 @@
 <c:import url="header.jsp"></c:import>
 <center>
 
-<form action = "updateChoosenParameter" method="POST"> 
+<form action = "updateChoosenParameterSeeker" method="POST"> 
 <table border="2" style="background-color:salmon">
 
 <tr><th colspan="2">CHOOSE THE PARAMETER WHICH YOU WANT TO EDIT</th></tr>
 
 		<tr>
 		
-			<td>JOB TITLE <input type="hidden" name="oldJobTitle" value="${jobs.getJobTitle()}" ></td>
+			<td>FirstName <input type="hidden" name="oldFirstName" value="${Seeker.getFirstName()}" ></td>
 			<%-- <c:out  value="${jobs.getJobTitle()}"</c:out> --%>
-			<td><input type="text" name="jobTitle" value="${jobs.getJobTitle()}"></td>
+			<td><input type="text" name="firstName" value="${seeker.getFirstName()}"></td>
 			
 			<%-- <td><input type="submit" name="inputed" value="update" onclick=" this.value += ' <c:out  value="jobTitle"/>'"></td> --%>
 		</tr>
 		<tr>
 		
-			<td>START DATE</td>
+			<td>Phone No</td>
 			<%-- <c:out  value="${jobs.getStartDate()}"</c:out> --%>
-			<td><input type="text" name="startDate" value="${jobs.getStartDate()}"></td>
+			<td><input type="text" name="phoneNo" value="${seeker.getPhone()}"></td>
 			<%-- this.value += ' <c:out  value="startDate"/>' --%>
 			<!-- <td><input type="submit" name="inputed" value="update" onclick="window.location='updateStartDate.jsp'"></td> -->
 		</tr>
 		<tr>
 		
-			<td>END DATE</td>
-				<td><input type="text" name="endDate" value="${jobs.getEndDate()}"></td>
+			<td>Email</td>
+				<td><input type="text" name="email" value="${seeker.getEmail()}"></td>
 			<%-- <td><c:out  value="${jobs.getEndDate()}"></c:out></td>
 			 onclick="this.value += ' <c:out  value="endDate"/>'"
 			<td><input type="submit" name="inputed" value="update" onclick="window.location='updateEndDate.jsp'"></td> --%>
@@ -53,65 +53,48 @@
 	
 		<tr>
 		
-			<td>START TIME</td>
-			<td><input type="text" ReadOnly="true" name="endDate" value="${jobs.getStartTime()}"></td>
+			<td>Password</td>
+			<td><input type="text" ReadOnly="true" name="password" value="${seeker.getPassword()}"></td>
 			
 			<%-- <td><input type="submit" disabled="disabled" name="inputed" value="update" onclick="this.value += ' <c:out  value="startTime"/>'"></td> --%>
 		</tr>
+		<%-- 	<tr>
+		
+			<td>Address</td>
+			<td><input type="text" ReadOnly="true" name="password" value="${seeker.getAdd()}"></td>
+			
+			<td><input type="submit" disabled="disabled" name="inputed" value="update" onclick="this.value += ' <c:out  value="startTime"/>'"></td>
+		</tr> --%>
+		
 		
 		<tr>
 		
-			<td>END TIME</td>
-			<td><input type="text" ReadOnly ="true" name="endDate" value="${jobs.getEndTime()}"></td>
+			<td>No Of Child</td>
+			<td><input type="text" name="no_of_child" value="${seeker.getNoOfChilds()}"></td>
 			
 			<%-- <td><input type="submit"disabled="disabled"  name="inputed" value="update" onclick="this.value += ' <c:out  value="endTime"/>'"></td> --%>
 		</tr>
 		
 		<tr>
 		
-			<td>PAY PER HOUR</td>
+			<td>Spouse name</td>
 			<%-- <c:out  value="${jobs.getPayPerHour()}"</c:out> --%>
-			 	<td><input type="text" name="payPerHour" value="${jobs.getPayPerHour()}"/></td>
+			 	<td><input type="text" name="spouseName" value="${seeker.getSpouseName()}"/></td>
 		<%--	<td><c:out  value="${jobs.getPayPerHour()}"></c:out></td>
 			this.value += ' <c:out  value="payPerHour"/>'
 			<td><input type="submit" name="inputed" value="update" onclick="window.location='updatePayPerHour.jsp'"></td> --%>
 		</tr>
-		<tr>
 		
-			<td>STATUS</td>
-			<td><%-- <input type="text" name="status" value="<c:out  value="${jobs.getStatus()}"</c:out>"/ --%>
-			
-			<select name="status">
-    
-        		<option value="${jobs.getStatus()}"><c:out value="${jobs.getStatus()}" /></option>
-        		<c:choose>
-        			
-        				<c:when test="${jobs.getStatus()=='INACTIVE'}">
-        					<option value="ACTIVE">ACTIVE</option>
-        				</c:when>
-        				<c:otherwise>
-        					<option value="INACTIVE">INACTIVE</option>
-        				</c:otherwise>
-        		
-        		</c:choose>
-        		
-    
-			</select>
-			</td>
-			<%-- <td><c:out  value="${jobs.getStatus()}"></c:out></td>
-			this.value += ' <c:out  value="payPerHour"/>'
-			<td><input type="submit" name="inputed" value="update" onclick=" this.value += ' <c:out  value="status"/>'"></td> --%>
-		</tr>
 		<tr>
 		<td colspan="2" align="right">
-		<input type="submit" name="update" value="update">
+		<input type="submit" name="edit" value="update">
 		</td>
 		</tr>
 	
 </table>
 
 </form> 
-<a href="updateJobServlet"><b>GO BACK.....</b></a>
+
 
 </center>
 </body>

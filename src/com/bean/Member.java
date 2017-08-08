@@ -50,22 +50,6 @@ public class Member {
 	public void setMemberType(String memberType) {
 		this.memberType = memberType;
 	}
-	public Seeker getSeeker() {
-		return seeker;
-	}
-	public void setSeeker(Seeker seeker) {
-		this.seeker = seeker;
-	}
-	public Sitter getSitter() {
-		return sitter;
-	}
-	public void setSitter(Sitter sitter) {
-		this.sitter = sitter;
-	}
 	
-	
-	
-	Seeker seeker = new Seeker();
-	Sitter sitter = new Sitter();
-	
+
 	}

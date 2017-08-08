@@ -13,7 +13,9 @@
 	if(session.getAttribute("uname")==null)
 		response.sendRedirect("error.jsp");
 
-
+/* 	if(session.getAttribute("utype")!="Sitter")
+	response.sendRedirect("error.jsp");
+ */
 
 %>
 <c:import url="headerSitter.jsp"></c:import>

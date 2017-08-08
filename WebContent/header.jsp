@@ -6,15 +6,26 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 <body>
+<%
+
+	if(!session.getAttribute("utype").equals("Seeker"))
+	response.sendRedirect("error.jsp");
+
+%>
+<div class="container">
 <span style="float:left">
 <a href="PerformSeeker.jsp"><img src="images/images.jpeg" width="30%" height="50%"/></a>
 </span>
 <span style="float:right">
-<b> Hi, <c:out value="${sessionScope.uname}"/>| <a href="logout">Logout</a></b>
+<a href="ViewProfileServlet"><button type="button" class="btn btn-default btn-sm">
+          <span class="glyphicon glyphicon-user"></span> <c:out value="${sessionScope.uname}"/> 
+        </button></a>
+<b><a href="logout">Logout</a></b>
 
 </span>
-
+</div>
 </body>
 </html>

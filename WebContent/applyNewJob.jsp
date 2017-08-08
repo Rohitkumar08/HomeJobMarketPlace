@@ -13,8 +13,6 @@
 	if(session.getAttribute("uname")==null)
 		response.sendRedirect("error.jsp");
 
-
-
 %>
 <c:import url="headerSitter.jsp"></c:import>
 
@@ -39,7 +37,7 @@
 	</c:forEach>
 </table>
 </form>
-
+<a href="PerformSitter.jsp">GO BACK..</a>
 </center>
 </body>
 </html>

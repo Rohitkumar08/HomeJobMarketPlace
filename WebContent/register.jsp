@@ -16,9 +16,9 @@
 <form action="registerServlet" method="POST">
 <table border="2" width="50%" style="background-color:salmon">
 	<tr><th colspan="2">Registration form:</th></tr>
-	<tr><td>First Name:</td><td> <input type = "text" name="name" placeholder="Enter name" required></td></tr>
-	<tr><td>Mobile no: </td><td><input type = "text" name="mobile" placeholder="Enter Mobile no" required></td></tr>
-	<tr><td>Email: </td><td><input type = "email" name="email" placeholder="Enter email id" required></td></tr>
+	<tr><td>First Name:</td><td> <input type = "text" name="name" placeholder="Enter only Alphabets name" required></td></tr>
+	<tr><td>Mobile no: </td><td><input type = "text" name="mobile" placeholder="Enter 10 digit Mobile no" required></td></tr>
+	<tr><td>Email: </td><td><input type = "email" name="email" placeholder="Someone@example.com" required></td></tr>
 	<tr><td>password: </td><td><input type = "password" name="password" placeholder="Enter password" required></td></tr>
 	<tr><td>Address:</td><td><input type = "textarea" name="address" placeholder="Enter address" required></td></tr>
 	

@@ -38,6 +38,36 @@ public class MemberServiceImp {
 	
 		return false;
 	}
+
+	public Seeker fetchSeekerUserDetails(int uid) {
+		// TODO Auto-generated method stub
+		Seeker seeker=ud.fetchSeekerMemberData(uid);
+		return seeker;
+	}
+
+	public boolean updateSeekerDetails(int uid,Seeker seeker) {
+		// TODO Auto-generated method stub
+		if(ud.updateSeekerDetailsDao(uid,seeker)){
+			return true;
+		}
+		else
+		return false;
+	}
+
+	public Sitter fetchSitterUserDetails(int uid) {
+		// TODO Auto-generated method stub
+		Sitter sitter=ud.fetchSitterMemberData(uid);
+		return sitter;
+	}
+
+	public boolean updateSitterDetails(int uid, Sitter sitter) {
+		// TODO Auto-generated method stub
+		if(ud.updateSitterDetailsDao(uid,sitter)){
+			return true;
+		}
+		else
+		return false;
+	}
 	
 	
 }

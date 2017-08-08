@@ -1,7 +1,7 @@
 package com.bean;
 
 
-public class Seeker{
+public class Seeker extends Member{
 	private static int noOfChilds;
 	private static String spouseName;
 	

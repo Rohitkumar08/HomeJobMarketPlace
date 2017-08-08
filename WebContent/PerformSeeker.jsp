@@ -8,21 +8,23 @@
 <title>Insert title here</title>
 </head>
 <body>
-<% 
+<%-- <%
 
-	if(session.getAttribute("uname")==null)
+	if(session.getAttribute("uname")==null){
+		out.print("dscdcewdccwdc");
 		response.sendRedirect("login.jsp");
+	}
+	
 
+%>   --%>
 
-
-%>
 
 <c:import url="header.jsp"></c:import>
 
 <center>
 <table border="2" width="50%" style="background-color:salmon">
 
-<tr><th>WELCOME AS A SEEKER</th></tr>
+<tr><th align="center">WELCOME AS A SEEKER</th></tr>
 <tr><td><a href="createJob.jsp">Create a new Job</a></td></tr>
 <tr><td><a href="updateJobServlet">Update a Job</a></td></tr>
 <tr><td><a href="deleteJobServlet">Delete a job</a></td></tr>

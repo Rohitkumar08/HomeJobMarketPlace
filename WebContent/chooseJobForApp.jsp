@@ -38,7 +38,8 @@
 </table>
 
 </form>
-
+<br>
+<a href="PerformSeeker.jsp">GO BACK</a>
 
 </center>
 </body>

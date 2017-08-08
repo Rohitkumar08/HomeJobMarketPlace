@@ -3,6 +3,9 @@ package com.servlet;
 import java.io.IOException;
 
 import java.io.PrintWriter;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 import com.service.*;
 
 import javax.servlet.RequestDispatcher;
@@ -26,7 +29,7 @@ import com.validations.*;
 public class registerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	validation val=new validation();
-	
+	public static final String SALT = "my-salt-text";
     
      
     /**
@@ -58,7 +61,13 @@ public class registerServlet extends HttpServlet {
 		mem.setFirstName(request.getParameter("name"));
 		mem.setPhone(request.getParameter("mobile"));
 		mem.setEmail(request.getParameter("email"));
-		mem.setPassword(request.getParameter("password"));
+		
+		String password=request.getParameter("password");
+		String saltedPassword = SALT + password;
+		String hashedPassword = generateHash(saltedPassword);
+		System.out.println("*******"+hashedPassword);
+		mem.setPassword(hashedPassword);
+		
 		mem.setAdd(request.getParameter("address"));
 		mem.setMemberType(request.getParameter("memberType"));
 		System.out.println(mem.getMemberType());
@@ -88,7 +97,7 @@ public class registerServlet extends HttpServlet {
 			int uid = ud.getID(mem.getEmail());
 			HttpSession session = request.getSession();
 			session.setAttribute("uname", mem.getFirstName());
-		
+			session.setAttribute("utype", uType);
 	        session.setAttribute("uid",uid);  
 			if(uType.equals("Sitter")){
 				sitter.setExpectedPay(Integer.parseInt(request.getParameter("expectedPay")));
@@ -121,6 +130,25 @@ public class registerServlet extends HttpServlet {
 		}
 		
 		
+	}
+    public static String generateHash(String input) {
+		StringBuilder hash = new StringBuilder();
+
+		try {
+			MessageDigest sha = MessageDigest.getInstance("SHA-1");
+			byte[] hashedBytes = sha.digest(input.getBytes());
+			char[] digits = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+					'a', 'b', 'c', 'd', 'e', 'f' };
+			for (int idx = 0; idx < hashedBytes.length; ++idx) {
+				byte b = hashedBytes[idx];
+				hash.append(digits[(b & 0xf0) >> 4]);
+				hash.append(digits[b & 0x0f]);
+			}
+		} catch (NoSuchAlgorithmException e) {
+			// handle error here.
+		}
+
+		return hash.toString();
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

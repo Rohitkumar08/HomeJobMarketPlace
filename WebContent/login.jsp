@@ -20,7 +20,8 @@
 
 
 </form>
-
+OR
+<br><a href="register.jsp">REGISTER HERE</a>
 
 </center>
 </body>
