@@ -51,7 +51,7 @@ public class UserData {
 	public int getID(String email) {
 		// TODO Auto-generated method stub
 		int uid;
-		String sql = "select uid from users where uemail= ?";
+		String sql = "select uid from users where uemail= ? and ustatus='ACTIVE'";
 		
 		try {
 			ps= connect.prepareStatement(sql);
@@ -97,7 +97,7 @@ public class UserData {
 	}
 	public String getPassword(String email){
 		
-		String sql = "select upassword from users where uemail = ?";
+		String sql = "select upassword from users where uemail = ? and ustatus='ACTIVE'";
 		String pwd="";
 		try{
 			
@@ -145,7 +145,7 @@ public class UserData {
 		
 		
 			String uType=null;
-			String sql = "select * from users where uemail= ?";
+			String sql = "select * from users where uemail= ? and ustatus='ACTIVE'";
 			
 			try {
 				ps= connect.prepareStatement(sql);
@@ -168,7 +168,7 @@ public class UserData {
 	public List<Sitter> fetchApplicants(int uid, String jobTitle) {
 		// TODO Auto-generated method stub
 		
-		String sql= "select u.uname,s.years_of_exp,s.expected_pay from application a,jobs j,users u,sitter s where j.job_title= ? and j.job_Id=a.jobId and a.member_id=u.uid and u.uid=s.sitter_id";
+		String sql= "select u.uname,s.years_of_exp,s.expected_pay from application a,jobs j,users u,sitter s where j.job_title= ? and j.job_Id=a.jobId and a.member_id=u.uid and u.uid=s.sitter_id and u.ustatus='ACTIVE'";
 
 		List<Sitter>  sitters= new ArrayList<>();
 		
@@ -201,7 +201,7 @@ public class UserData {
 		// TODO Auto-generated method stub
 		Seeker seeker = (Seeker) FactoryUtil.mapClassInstance.get(FactoryUtil.SEEKER);
 		String uType=null;
-		String sql = "select * from users where uid= ?";
+		String sql = "select * from users where uid= ? and ustatus='ACTIVE'";
 		String sql1 = "select * from seeker where seeker_id = ?";
 		try {
 			ps= connect.prepareStatement(sql);
@@ -348,6 +348,79 @@ public class UserData {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return false;
+		}
+	}
+
+	public List<String> getSearchedEmails(String keyWord) {
+		// TODO Auto-generated method stub
+		String sql = "select uemail from users where (uemail LIKE ? and utype='Seeker' and ustatus='ACTIVE')";
+		List<String> fetchedData = new ArrayList<>();
+		try {
+			ps= connect.prepareStatement(sql);
+			ps.setString(1, "%"+keyWord+"%");
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()){
+				
+//				System.out.println(rs.getString("utype"));
+				fetchedData.add(rs.getString("uemail"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return fetchedData;
+	}
+
+	public boolean deleteSeeker(int uid) {
+		// TODO Auto-generated method stub
+		
+		String sql = "update users set ustatus='INACTIVE' where uid=?";
+			try {
+				ps = connect.prepareStatement(sql);
+				ps.setInt(1, uid);
+				ps.executeUpdate();
+			
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+			
+			}
+			sql = "update jobs set status='INACTIVE' where posted_by=?";
+			try {
+				ps = connect.prepareStatement(sql);
+				ps.setInt(1, uid);
+				ps.executeUpdate();
+			return true;
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				
+				return false;
+			}
+	}
+
+	public boolean deleteSitter(int uid) {
+		// TODO Auto-generated method stub
+		String sql = "update users set ustatus='INACTIVE' where uid=?";
+		try {
+			ps = connect.prepareStatement(sql);
+			ps.setInt(1, uid);
+			ps.executeUpdate();
+		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+		
+		}
+		sql = "update Application set appstatus='INACTIVE' where member_id=?";
+		try {
+			ps = connect.prepareStatement(sql);
+			ps.setInt(1, uid);
+			ps.executeUpdate();
+		return true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			
 			return false;
 		}
 	}

@@ -44,6 +44,15 @@ public class updateJob extends HttpServlet {
 		// TODO Auto-generated method stub
 		response.setContentType("text/html");
 		HttpSession session = request.getSession(); 
+
+		if(session.getAttribute("utype")==null){
+			RequestDispatcher rd = request.getRequestDispatcher("error.jsp");
+			rd.forward(request, response);
+		}
+		if(!(session.getAttribute("utype").equals("Seeker"))){
+			RequestDispatcher rd = request.getRequestDispatcher("error.jsp");
+			rd.forward(request, response);
+		}
 		int uid=(int) session.getAttribute("uid");
 		
 		String selected[]= request.getParameterValues("inputed");

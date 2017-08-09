@@ -8,14 +8,14 @@
 <title>Insert title here</title>
 </head>
 <body>
-<% 
+<%-- <% 
 
 	if(session.getAttribute("uname")==null)
 		response.sendRedirect("error.jsp");
 
 
 
-%>
+%> --%>
 <c:import url="headerSitter.jsp"></c:import>
 
 <center>
@@ -39,7 +39,7 @@
 	</c:forEach>
 </table>
 </form>
-<a href="PerformSitter.jsp">GO BACK..</a>
+<a href="PerformSitter">GO BACK..</a>
 </center>
 </body>
 </html>

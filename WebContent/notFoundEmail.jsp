@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-       <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+     <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -8,14 +8,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-<c:import url="header.jsp"></c:import>
+<c:import url="headerSitter.jsp"></c:import>
 <center>
-
-<h2 style="font-color: red">Error while upating your profile...!!!!</h2>
-
-<a href="PerformSeeker"><b>GO BACK.....</b></a>
+<h2 style="color:red">NO Results are there....try diff keywords</h2>
+<a href="PerformSitter.jsp"><b>GO BACK.....</b></a>
 </center>
 
-</body>
 </body>
 </html>

@@ -44,6 +44,12 @@ public class ApplyJobServlet extends HttpServlet {
 	
 		
 		HttpSession session = request.getSession(); 
+		if(session.getAttribute("uname")==null || !(session.getAttribute("utype").equals("Sitter"))){
+			System.out.println("***************************************8");
+			RequestDispatcher rd = request.getRequestDispatcher("error.jsp");
+			rd.forward(request, response);
+		}
+		
 		int uid=(int) session.getAttribute("uid");
 		
 		String selected[]= request.getParameterValues("inputed");

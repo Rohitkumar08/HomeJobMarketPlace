@@ -1,6 +1,8 @@
 package com.servlet;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -44,6 +46,11 @@ public class ViewProfileServletSitter extends HttpServlet {
 		// TODO Auto-generated method stub
 		
 		HttpSession session = request.getSession();
+		if(session.getAttribute("uname")==null || !(session.getAttribute("utype").equals("Sitter"))){
+			System.out.println("***************************************8");
+			RequestDispatcher rd = request.getRequestDispatcher("error.jsp");
+			rd.forward(request, response);
+		}
 		int uid=(int) session.getAttribute("uid");
 		
 		

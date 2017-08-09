@@ -48,6 +48,16 @@ public class updateChoosenParameter extends HttpServlet {
 //		String selected[]= request.getParameterValues("inputed");
 //		String param=selected[0].substring(7);
 //		System.out.println(param);
+		HttpSession session = request.getSession();
+
+		if(session.getAttribute("utype")==null){
+			RequestDispatcher rd = request.getRequestDispatcher("error.jsp");
+			rd.forward(request, response);
+		}
+		if(!(session.getAttribute("utype").equals("Seeker"))){
+			RequestDispatcher rd = request.getRequestDispatcher("error.jsp");
+			rd.forward(request, response);
+		}
 		job.setJobTitle(request.getParameter("jobTitle"));
 		job.setStartDate(request.getParameter("endDate"));
 		job.setEndDate(request.getParameter("startTime"));
@@ -60,7 +70,7 @@ public class updateChoosenParameter extends HttpServlet {
 		System.out.println(request.getParameter("oldJobTitle"));
 		
 		
-		HttpSession session = request.getSession();
+		
 		session.setAttribute("oldJobTitle", oldJobTitle);
 		
 		

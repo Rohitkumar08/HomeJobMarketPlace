@@ -10,7 +10,7 @@
 <body>
 <center>
 <h2>JOB SUCCESSFULLY CREATED</h2>
-<c:import url="PerformSeeker.jsp"></c:import>
+<c:import url="PerformSeeker"></c:import>
 </center>
 </body>
 </html>

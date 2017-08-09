@@ -37,7 +37,7 @@
 	</c:forEach>
 </table>
 </form>
-<a href="PerformSitter.jsp">GO BACK..</a>
+<a href="PerformSitter">GO BACK..</a>
 </center>
 </body>
 </html>

@@ -104,7 +104,7 @@ public class registerServlet extends HttpServlet {
 				sitter.setYearsOfExperience(Integer.parseInt(request.getParameter("yoe")));
 				svc.doRegisterSitter(uid,sitter);
 				
-				RequestDispatcher rd= request.getRequestDispatcher("PerformSitter.jsp");
+				RequestDispatcher rd= request.getRequestDispatcher("PerformSitter");
 				rd.forward(request, response);
 				
 					//TODO sitter operations
@@ -115,7 +115,7 @@ public class registerServlet extends HttpServlet {
 				seeker.setNoOfChilds(Integer.parseInt(request.getParameter("noOfChilds")));
 				seeker.setSpouseName(request.getParameter("spouseName"));
 					svc.doRegisterSeeker(uid,seeker);
-					RequestDispatcher rd= request.getRequestDispatcher("PerformSeeker.jsp");
+					RequestDispatcher rd= request.getRequestDispatcher("PerformSeeker");
 					rd.forward(request, response);
 //				fillSeekerDetails(uid,sc);
 //				performSeekerTask(uid,sc);

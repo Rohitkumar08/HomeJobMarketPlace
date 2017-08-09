@@ -25,7 +25,7 @@
 <table border="2" width="50%" style="background-color:salmon">
 
 <tr><th align="center">WELCOME AS A SEEKER</th></tr>
-<tr><td><a href="createJob.jsp">Create a new Job</a></td></tr>
+<tr><td><a href="createJob">Create a new Job</a></td></tr>
 <tr><td><a href="updateJobServlet">Update a Job</a></td></tr>
 <tr><td><a href="deleteJobServlet">Delete a job</a></td></tr>
 <tr><td><a href="ApplicantsJobServlet">View all jobs</a></td></tr>

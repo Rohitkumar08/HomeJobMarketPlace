@@ -8,14 +8,14 @@
 <title>Insert title here</title>
 </head>
 <body>
-<% 
+<%-- <% 
 
 	if(session.getAttribute("uname")==null)
 		response.sendRedirect("error.jsp");
 
 
 
-%>
+%> --%>
 
 <c:import url="header.jsp"></c:import>
 <center>
@@ -95,7 +95,9 @@
 
 </form> 
 
-
+<form action="DeleteServlet" method="Post">
+    <input type="submit" value="Delete Profile">
+</form>
 </center>
 </body>
 </html>

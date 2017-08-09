@@ -13,7 +13,7 @@
 
 
 <h2 style="color:red">YOU HAVENT'T CREATED ANY JOB YET...!!!!</h2>
-<a href="PerformSeeker.jsp"><b>GO BACK.....</b></a>
+<a href="PerformSeeker"><b>GO BACK.....</b></a>
 </center>
 
 </body>

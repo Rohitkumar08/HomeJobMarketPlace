@@ -7,6 +7,12 @@
 <title>Insert title here</title>
 </head>
 <body>
+<center>
+
+<h2 style="color: red">Successfully Deleted ur Profile...!!!</h2>
+
+<a href="login.jsp"><b>Log in again</b></a>
+</center>
 
 </body>
 </html>

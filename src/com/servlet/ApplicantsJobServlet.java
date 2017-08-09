@@ -3,6 +3,7 @@ package com.servlet;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -46,8 +47,16 @@ public class ApplicantsJobServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 
 		
-HttpSession session = request.getSession();
-		
+		HttpSession session = request.getSession();
+
+		if(session.getAttribute("utype")==null){
+			RequestDispatcher rd = request.getRequestDispatcher("error.jsp");
+			rd.forward(request, response);
+		}
+		if(!(session.getAttribute("utype").equals("Seeker"))){
+			RequestDispatcher rd = request.getRequestDispatcher("error.jsp");
+			rd.forward(request, response);
+		}
 		int uid =(int) session.getAttribute("uid");
 		
 

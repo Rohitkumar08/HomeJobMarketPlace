@@ -55,7 +55,7 @@ public class LoginServlet extends HttpServlet {
     			mem.setEmail(email);
     			System.out.println(mem.getEmail());
     			if(mbs.validateUser(email, hashedPassword)){
-    				
+    				System.out.println("1234567890-098765434567890");
     				HttpSession session=request.getSession();  
     		        session.setAttribute("uid",ud.getID(email));  
     		        ud.getUserDetails(email);
@@ -65,11 +65,11 @@ public class LoginServlet extends HttpServlet {
     				String uType=mem.getMemberType();
     				session.setAttribute("utype", uType);
     				if(uType.equals("Seeker")){
-    					RequestDispatcher rd = request.getRequestDispatcher("PerformSeeker.jsp");
+    					RequestDispatcher rd = request.getRequestDispatcher("PerformSeeker");
     					rd.forward(request, response);
     				}
     				else{
-    					RequestDispatcher rd = request.getRequestDispatcher("PerformSitter.jsp");
+    					RequestDispatcher rd = request.getRequestDispatcher("PerformSitter");
     					rd.forward(request, response);
     				}
     				

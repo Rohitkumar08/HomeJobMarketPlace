@@ -10,11 +10,15 @@
 </head>
 <body>
 <center>
-<% if(!session.getAttribute("utype").equals("Sitter"))
+<%-- <% if(!session.getAttribute("utype").equals("Sitter"))
 	response.sendRedirect("error.jsp");
-	%>
+	%> --%>
 <span style="float:left">
-<a href="PerformSitter.jsp"><img src="images/images.jpeg" width="30%" height="50%"/></a>
+<a href="PerformSitter"><img src="images/images.jpeg" width="30%" height="50%"/></a>
+<form action="SearchServlet">
+<input type = "text" placeholder="Enter Seeker's email" name="searchEmail">
+<input type="submit" value="search" name="searchButton">
+</form>
 </span>
 
 <span style="float:right">

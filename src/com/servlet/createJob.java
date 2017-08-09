@@ -1,35 +1,26 @@
 package com.servlet;
 
 import java.io.IOException;
-import java.sql.SQLException;
-import java.util.List;
 
-import javax.annotation.Resource;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.sql.DataSource;
-
-import com.dao.*;
-import com.bean.*;
-
-import com.service.FactoryUtil;
 
 /**
- * Servlet implementation class listOfJobs
+ * Servlet implementation class createJob
  */
-@WebServlet("/listOfJobs_BACKUP")
-public class listOfJobsServlet extends HttpServlet {
+@WebServlet("/createJob")
+public class createJob extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       JobsData jbd= (JobsData) FactoryUtil.mapClassInstance.get(FactoryUtil.JOBSDATA);
-       Jobs jb= (Jobs) FactoryUtil.mapClassInstance.get(FactoryUtil.JOBS);
+       
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public listOfJobsServlet() {
+    public createJob() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -37,22 +28,21 @@ public class listOfJobsServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-   
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
+		System.out.println("!@#$%^&*@#$%^&#$%^&*#$%^&$%^&*");
+		String uType=(String) session.getAttribute("utype");
+		System.out.println(uType+"$$$$$$$$$$$$$$$$$$$");
+		if(uType==null){
+			RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
+			rd.forward(request, response);
+		}
+		if(uType.equals("Seeker")){
+			RequestDispatcher rd = request.getRequestDispatcher("createJob.jsp");
+			rd.forward(request, response);
+		}
 		
-		
-		int uid = (int) session.getAttribute("uid");
-		try {
-            List<Jobs> job = jbd.listAllJobs(uid);
-            System.out.println(job.get(0).getJobTitle());
-            request.setAttribute("jobs", job); 
-            System.out.println("skuvbwkuvchwouvwkuvhwifvgweifwkuvcwifbweufgewifebwu");
-            request.getRequestDispatcher("listOfJobs.jsp").forward(request, response);
-        } catch (Exception e) {
-            throw new ServletException("Cannot obtain jobs from DB", e);
-        }
 	}
 
 	/**

@@ -13,7 +13,7 @@
 
 <h2 style="font-color: red">SUCCESSFULLY UPDATED YOUR PROFILE...!!!!</h2>
 
-<a href="PerformSitter.jsp"><b>GO BACK.....</b></a>
+<a href="PerformSitter"><b>GO BACK.....</b></a>
 </center>
 
 </body>

@@ -58,7 +58,7 @@ public class JobsData {
 	public List<Jobs> listAllJobs(int uid) {
 		// TODO Auto-generated method stub
 		
-		String sql = "select * from Jobs where posted_by=?";
+		String sql = "select * from Jobs where posted_by=? and status='ACTIVE'";
 		List<Jobs>  jobs= new ArrayList<>();
 		
 		try {
@@ -275,7 +275,7 @@ public class JobsData {
 	}
 	public List<Jobs> getAppliedJobs(int uid) {
 		// TODO Auto-generated method stub
-		String sql = "select * from Jobs where job_id IN (select jobId from Application where member_id=?)";
+		String sql = "select * from Jobs where job_id IN (select jobId from Application where member_id=?) and status='ACTIVE'";
          List<Jobs>  jobApplied= new ArrayList<>();
 		
 		try {

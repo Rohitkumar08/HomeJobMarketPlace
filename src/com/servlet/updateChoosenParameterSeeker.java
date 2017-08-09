@@ -44,6 +44,11 @@ public class updateChoosenParameterSeeker extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
+		if(session.getAttribute("uname")==null || !(session.getAttribute("utype").equals("Seeker"))){
+			System.out.println("***************************************8");
+			RequestDispatcher rd = request.getRequestDispatcher("error.jsp");
+			rd.forward(request, response);
+		}
 		int uid= (int) session.getAttribute("uid");
 		seeker.setFirstName(request.getParameter("firstName"));
 		seeker.setPhone(request.getParameter("phoneNo"));

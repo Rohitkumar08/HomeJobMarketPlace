@@ -1,5 +1,7 @@
 package com.service;
 
+import java.util.List;
+
 import com.bean.Member;
 import com.bean.Seeker;
 import com.bean.Sitter;
@@ -66,6 +68,35 @@ public class MemberServiceImp {
 			return true;
 		}
 		else
+		return false;
+	}
+
+	public List<String> getSearchData(String keyWord) {
+		
+		List<String> emails= ud.getSearchedEmails(keyWord);
+		
+		
+		
+		return emails;
+		// TODO Auto-generated method stub
+		
+	}
+
+	public boolean deleteSeekerDetails(int uid) {
+		// TODO Auto-generated method stub
+		if(ud.deleteSeeker(uid)){
+			return true;
+			
+		}
+		return false;
+	}
+
+	public boolean deleteSitterDetails(int uid) {
+		// TODO Auto-generated method stub
+		if(ud.deleteSitter(uid)){
+			return true;
+			
+		}
 		return false;
 	}
 	

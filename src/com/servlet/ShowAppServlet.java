@@ -49,6 +49,15 @@ public class ShowAppServlet extends HttpServlet {
 //		String job= request.getParameter("jobToBeDeleted");
 //		System.out.println(job);
 		HttpSession session = request.getSession(); 
+
+		if(session.getAttribute("utype")==null){
+			RequestDispatcher rd = request.getRequestDispatcher("error.jsp");
+			rd.forward(request, response);
+		}
+		if(!(session.getAttribute("utype").equals("Seeker"))){
+			RequestDispatcher rd = request.getRequestDispatcher("error.jsp");
+			rd.forward(request, response);
+		}
 		int uid=(int) session.getAttribute("uid");
 		
 		String selected[]= request.getParameterValues("inputed");
