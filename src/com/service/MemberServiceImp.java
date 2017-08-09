@@ -99,6 +99,13 @@ public class MemberServiceImp {
 		}
 		return false;
 	}
+
+	public List<Member> getAllData(int uid) {
+		// TODO Auto-generated method stub
+		
+	List<Member> allData= ud.fetchAdminData(uid);
+	return allData;
+	}
 	
 	
 }

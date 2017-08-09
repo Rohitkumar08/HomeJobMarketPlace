@@ -68,11 +68,15 @@ public class LoginServlet extends HttpServlet {
     					RequestDispatcher rd = request.getRequestDispatcher("PerformSeeker");
     					rd.forward(request, response);
     				}
-    				else{
+    				if(uType.equals("Sitter")){
     					RequestDispatcher rd = request.getRequestDispatcher("PerformSitter");
     					rd.forward(request, response);
     				}
+    				if(uType.equals("Admin")){
+    					RequestDispatcher rd = request.getRequestDispatcher("AdminLoggedIn");
+    					rd.forward(request, response);
     				
+    				}
     			}
     			else{
     				

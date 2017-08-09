@@ -425,6 +425,33 @@ public class UserData {
 		}
 	}
 
+	public List<Member> fetchAdminData(int uid) {
+		// TODO Auto-generated method stub
+		String sql = "select * from users";
+		List<Member> members = new ArrayList<>();
+		try {
+			ps= connect.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()){
+				Member mem = new Member();
+				mem.setFirstName(rs.getString("uname"));
+				mem.setEmail(rs.getString("uemail"));
+				mem.setMemberType(rs.getString("utype"));
+				mem.setPhone(rs.getString("phone"));
+				mem.setStatus(rs.getString("ustatus"));
+				members.add(mem);
+				
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return members;
+		
+	}
+
 	
 	
 	
