@@ -1,5 +1,8 @@
 package com.validations;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -8,6 +11,7 @@ import com.service.FactoryUtil;
 
 public class validation {
 	Member mem = (Member) FactoryUtil.mapClassInstance.get(FactoryUtil.MEMBER);
+	Jobs job = (Jobs) FactoryUtil.mapClassInstance.get(FactoryUtil.JOBS);
 	public boolean validateName(){
 //		char[] arr = firstName.toCharArray();
 		mem.getFirstName(); 	
@@ -69,6 +73,72 @@ public class validation {
 	    }
 		
 	}
+
+
+
+	public boolean validateEndDate() throws ParseException {
+		// TODO Auto-generated method stub
+		String date1 = job.getStartDate();
+		String date2 = job.getEndDate();
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+
+		Date startDate = format.parse(date1);
+		Date endDate = format.parse(date2);
+
+		if (startDate.compareTo(endDate) <0) {
+		    System.out.println("earlier");
+		    System.out.println("");
+		    return true;
+		}
+		else if(startDate.compareTo(endDate)==0){
+			
+			 String startTime = job.getStartTime();
+			    String endTime = job.getEndTime();
+			    SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+			    Date d1 = sdf.parse(startTime);
+			    Date d2 = sdf.parse(endTime);
+			    long elapsed = d2.getTime() - d1.getTime(); 
+			    System.out.println(elapsed);
+
+			if (elapsed<0) {
+			    System.out.println("earlier");
+			    System.out.println("");
+			    return false;
+			}
+		    else{
+		    	
+		    return true;	
+		    }
+			
+			
+		}
+	    else{
+	    	
+	    return false;	
+	    }
+		
+	}
+//	public boolean validateEndTime() throws ParseException {
+//		// TODO Auto-generated method stub
+//		 String startTime = job.getStartTime();
+//		    String endTime = job.getEndTime();
+//		    SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+//		    Date d1 = sdf.parse(startTime);
+//		    Date d2 = sdf.parse(endTime);
+//		    long elapsed = d2.getTime() - d1.getTime(); 
+//		    System.out.println(elapsed);
+//
+//		if (elapsed<0) {
+//		    System.out.println("earlier");
+//		    System.out.println("");
+//		    return true;
+//		}
+//	    else{
+//	    	
+//	    return false;	
+//	    }
+//		
+//	}
 
 	
 

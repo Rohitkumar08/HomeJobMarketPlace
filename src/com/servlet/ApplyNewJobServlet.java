@@ -52,6 +52,9 @@ public class ApplyNewJobServlet extends HttpServlet {
 		try {
             List<Jobs> job = jbd.listAllJobsForSeekers();
            // System.out.println(job.get(0).getJobTitle());
+            if(job.size()==0){
+            	 request.getRequestDispatcher("noJobsAvail.jsp").forward(request, response);
+            }
             request.setAttribute("jobs", job); 
             System.out.println("skuvbwkuvchwouvwkuvhwifvgweifwkuvcwifbweufgewifebwu");
             request.getRequestDispatcher("applyNewJob.jsp").forward(request, response);

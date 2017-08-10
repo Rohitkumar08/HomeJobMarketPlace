@@ -45,7 +45,10 @@ public class listOfJobs extends HttpServlet {
 		int uid = (int) session.getAttribute("uid");
 		try {
             List<Jobs> job = jbd.listAllJobsForSeekers();
-            System.out.println(job.get(0).getJobTitle());
+          if(job.size()==0){
+        	  RequestDispatcher rd = request.getRequestDispatcher("noJobsAvail.jsp");
+              rd.forward(request, response);
+          }
             request.setAttribute("jobs", job);            
             RequestDispatcher rd = request.getRequestDispatcher("listOfAllJobs.jsp");
             rd.forward(request, response);

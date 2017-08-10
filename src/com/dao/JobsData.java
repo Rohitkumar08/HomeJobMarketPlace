@@ -249,7 +249,7 @@ public class JobsData {
 	public List<Jobs> fetchSeekerJobs(int uid) {
 		// TODO Auto-generated method stub
 		int posted_By=0;
-		sql = "select job_title,status from Jobs where posted_by= ?";
+		sql = "select job_title,status from Jobs where posted_by= ? and status='ACTIVE'";
 		List<Jobs> jobs= new ArrayList<>();
 		try {
 			ps = connect.prepareStatement(sql);

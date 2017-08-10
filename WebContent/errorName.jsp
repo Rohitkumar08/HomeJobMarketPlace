@@ -8,8 +8,9 @@
 <title>Insert title here</title>
 </head>
 <body>
+
 <center>
-<p style="color:red">****not a valid name please try again****
+<p style="color:red">****not a valid <c:out value="${errorParameter}"></c:out> please try again****
 <c:import url="register.jsp"></c:import>
 </center>
 </body>

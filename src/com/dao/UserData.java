@@ -452,6 +452,46 @@ public class UserData {
 		
 	}
 
+	public boolean emailExist(String email) {
+		// TODO Auto-generated method stub
+		String sql = "select count(*) from users where uemail=? and ustatus='INACTIVE'";
+		int count=0;
+		try {
+			ps= connect.prepareStatement(sql);
+			ps.setString(1, email);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()){
+				count++;
+			
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		if(count>0){
+			return true;
+		}
+		
+		return false;
+	}
+
+	public void setPipeline(String email) {
+		// TODO Auto-generated method stub
+		String sql="update users set uemail=? where uemail=?";
+		String flagEmail = email;
+		flagEmail=flagEmail.concat("|");
+		try {
+			ps= connect.prepareStatement(sql);
+			ps.setString(1, flagEmail);
+			ps.setString(2,email);
+			ps.executeUpdate();
+		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
 	
 	
 	

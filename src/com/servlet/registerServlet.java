@@ -74,23 +74,29 @@ public class registerServlet extends HttpServlet {
 
 		if(!val.validateName())
 		{
+			request.setAttribute("errorParameter", "name");
 			RequestDispatcher rd= request.getRequestDispatcher("errorName.jsp");
 			rd.forward(request, response);
 		}
 		System.out.println(mem.getFirstName());
 		if(!val.validatePhone())
 		{
-			RequestDispatcher rd= request.getRequestDispatcher("errorPhoneNo.jsp");
+			request.setAttribute("errorParameter", "Phone No");
+			RequestDispatcher rd= request.getRequestDispatcher("errorName.jsp");
 			rd.forward(request, response);
 		}
 		
 		if(!val.validateEmail())
 		{
-			RequestDispatcher rd= request.getRequestDispatcher("errorEmail.jsp");
+			request.setAttribute("errorParameter", "Email");
+			RequestDispatcher rd= request.getRequestDispatcher("errorName.jsp");
 			rd.forward(request, response);
 		}
 		
-		
+		String email = mem.getEmail();
+		if(ud.emailExist(email)){
+			ud.setPipeline(email);
+		}
 		boolean registered=svc.doRegister(mem);
 		if(registered){
 			String uType = mem.getMemberType();

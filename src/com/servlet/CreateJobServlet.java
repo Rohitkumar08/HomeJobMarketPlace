@@ -2,6 +2,7 @@ package com.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.ParseException;
 
 import com.dao.*;
 import com.bean.*;
@@ -15,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.service.*;
+import com.validations.validation;
 /**
  * Servlet implementation class createJobServlet
  */
@@ -26,6 +28,7 @@ public class CreateJobServlet extends HttpServlet {
        UserData ud  = (UserData) FactoryUtil.mapClassInstance.get(FactoryUtil.USERDATA);
        Member mem = (Member) FactoryUtil.mapClassInstance.get(FactoryUtil.MEMBER);
        Jobs job = (Jobs)FactoryUtil.mapClassInstance.get(FactoryUtil.JOBS);
+       validation val=new validation();
     /**
      * 
      * @see HttpServlet#HttpServlet()
@@ -44,11 +47,33 @@ public class CreateJobServlet extends HttpServlet {
 		response.setContentType("text/html");
 		
 		job.setJobTitle(request.getParameter("jobTitle"));
-		job.setStartDate(request.getParameter("endDate"));
-		job.setEndDate(request.getParameter("startTime"));
+		job.setStartDate(request.getParameter("startDate"));
+		job.setEndDate(request.getParameter("endDate"));
 		job.setStartTime(request.getParameter("startTime"));
 		job.setEndTime(request.getParameter("endTime"));
 		job.setPayPerHour(Integer.parseInt(request.getParameter("payPerHour")));
+		RequestDispatcher rd;
+//		if(!val.validateStartDate())
+//		{
+//			request.setAttribute("errorParameter", "StartDate");
+//			rd= request.getRequestDispatcher("errorJobCreation.jsp");
+//			rd.forward(request, response);
+//		}
+		try {
+			if(!val.validateEndDate())
+			{
+				request.setAttribute("errorParameter", "EndDate");
+				rd= request.getRequestDispatcher("errorJobCreation.jsp");
+				rd.forward(request, response);
+			}
+			
+			
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
 		
 		HttpSession session = request.getSession();
 		
@@ -57,11 +82,11 @@ public class CreateJobServlet extends HttpServlet {
 		boolean done = jbs.newJob(uid);
 		
 		if(done){
-			RequestDispatcher rd = request.getRequestDispatcher("successJob.jsp");
+		rd = request.getRequestDispatcher("successJob.jsp");
 			rd.forward(request, response);
 		}
 		else{
-			RequestDispatcher rd = request.getRequestDispatcher("someError.jsp");
+		rd = request.getRequestDispatcher("someError.jsp");
 			rd.forward(request, response);
 		}
     	
