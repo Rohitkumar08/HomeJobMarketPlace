@@ -445,14 +445,14 @@ public class JobsData {
 	public boolean updateTheseJobDetails(Jobs job, String oldJobTitle) {
 		// TODO Auto-generated method stub
 		
-		sql = "update Jobs set job_title =?, start_date=?, end_date=?, pay_per_hour=?, status=? where job_title = ?";
+		sql = "update Jobs set job_title =?, start_date=?, end_date=?, pay_per_hour=? where job_title = ?";
 		try {
 			ps = connect.prepareStatement(sql);
 			ps.setString(1, job.getJobTitle());
 			ps.setString(2, job.getStartDate());
 			ps.setString(3, job.getEndDate());
 			ps.setInt(4, job.getPayPerHour());
-			ps.setString(5, job.getStatus());
+//			ps.setString(5, job.getStatus());
 			System.out.println("****************"+ job.getJobTitle());
 			ps.setString(6, oldJobTitle);
 			

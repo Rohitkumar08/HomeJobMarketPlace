@@ -23,7 +23,7 @@
 <table border="2" style="background-color:salmon">
 
 <tr><th colspan="3">LIST OF ALL JOBS POSTED BY YOU</th></tr>
-<tr><td>JOB TITLE</td><td>STATUS</td></tr>
+<tr><b><td>JOB TITLE</td><td>STATUS</td></b></tr>
 	<c:forEach items="${jobs}" var ="job">
 
 		<tr>

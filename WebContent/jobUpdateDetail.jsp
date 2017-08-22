@@ -76,10 +76,10 @@
 			this.value += ' <c:out  value="payPerHour"/>'
 			<td><input type="submit" name="inputed" value="update" onclick="window.location='updatePayPerHour.jsp'"></td> --%>
 		</tr>
-		<tr>
+	<%-- 	<tr>
 		
 			<td>STATUS</td>
-			<td><%-- <input type="text" name="status" value="<c:out  value="${jobs.getStatus()}"</c:out>"/ --%>
+			<td><input type="text" name="status" value="<c:out  value="${jobs.getStatus()}"</c:out>"/
 			
 			<select name="status">
     
@@ -98,10 +98,10 @@
     
 			</select>
 			</td>
-			<%-- <td><c:out  value="${jobs.getStatus()}"></c:out></td>
+			<td><c:out  value="${jobs.getStatus()}"></c:out></td>
 			this.value += ' <c:out  value="payPerHour"/>'
-			<td><input type="submit" name="inputed" value="update" onclick=" this.value += ' <c:out  value="status"/>'"></td> --%>
-		</tr>
+			<td><input type="submit" name="inputed" value="update" onclick=" this.value += ' <c:out  value="status"/>'"></td>
+		</tr> --%>
 		<tr>
 		<td colspan="2" align="right">
 		<input type="submit" name="update" value="update">

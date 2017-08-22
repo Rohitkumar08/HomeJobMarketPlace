@@ -33,23 +33,31 @@ public class SearchServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
 		
+		RequestDispatcher rd;
 		String keyWord=request.getParameter("searchEmail");
-		
-		List<String> emails=mbs.getSearchData(keyWord);
-		request.setAttribute("emails", emails);
-		if(emails.size()!=0){
+		if(keyWord.length()!=0){
 			
-			RequestDispatcher rd = request.getRequestDispatcher("emailResults.jsp");
-			rd.forward(request, response);
-			
+				List<String> emails=mbs.getSearchData(keyWord);
+				request.setAttribute("emails", emails);
+				if(emails.size()!=0){
+					
+					rd = request.getRequestDispatcher("emailResults.jsp");
+					rd.forward(request, response);
+					
+				}
+				else{
+					rd = request.getRequestDispatcher("notFoundEmail.jsp");
+					rd.forward(request, response);
+				}
 		}
 		else{
-			RequestDispatcher rd = request.getRequestDispatcher("notFoundEmail.jsp");
+			rd = request.getRequestDispatcher("invalidSearch.jsp");
 			rd.forward(request, response);
+			
 		}
 	}
+	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

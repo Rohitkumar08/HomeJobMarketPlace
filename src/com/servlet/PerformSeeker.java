@@ -31,7 +31,7 @@ public class PerformSeeker extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
-		if(session.getAttribute("uname")!=null || !(session.getAttribute("utype").equals("Seeker"))){
+		if(session.getAttribute("uname")!=null && (session.getAttribute("utype").equals("Seeker"))){
 			RequestDispatcher rd = request.getRequestDispatcher("PerformSeeker.jsp");
 			rd.forward(request, response);
 		}

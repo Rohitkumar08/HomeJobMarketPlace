@@ -51,13 +51,13 @@
 		</tr>
 	
 	
-		<tr>
+		<%-- <tr>
 		
 			<td>Password</td>
 			<td><input type="text" ReadOnly="true" name="password" value="${sitter.getPassword()}"></td>
 			
-			<%-- <td><input type="submit" disabled="disabled" name="inputed" value="update" onclick="this.value += ' <c:out  value="startTime"/>'"></td> --%>
-		</tr>
+			<td><input type="submit" disabled="disabled" name="inputed" value="update" onclick="this.value += ' <c:out  value="startTime"/>'"></td>
+		</tr> --%>
 		<%-- 	<tr>
 		
 			<td>Address</td>

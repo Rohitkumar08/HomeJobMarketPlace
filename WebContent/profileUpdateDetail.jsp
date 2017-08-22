@@ -44,20 +44,20 @@
 		<tr>
 		
 			<td>Email</td>
-				<td><input type="text" name="email" value="${seeker.getEmail()}"></td>
+				<td><input type="text" name="email" value="${seeker.getEmail()}" readonly="true"></td>
 			<%-- <td><c:out  value="${jobs.getEndDate()}"></c:out></td>
 			 onclick="this.value += ' <c:out  value="endDate"/>'"
 			<td><input type="submit" name="inputed" value="update" onclick="window.location='updateEndDate.jsp'"></td> --%>
 		</tr>
 	
 	
-		<tr>
+		<%-- <tr>
 		
 			<td>Password</td>
 			<td><input type="text" ReadOnly="true" name="password" value="${seeker.getPassword()}"></td>
 			
-			<%-- <td><input type="submit" disabled="disabled" name="inputed" value="update" onclick="this.value += ' <c:out  value="startTime"/>'"></td> --%>
-		</tr>
+			<td><input type="submit" disabled="disabled" name="inputed" value="update" onclick="this.value += ' <c:out  value="startTime"/>'"></td>
+		</tr> --%>
 		<%-- 	<tr>
 		
 			<td>Address</td>
