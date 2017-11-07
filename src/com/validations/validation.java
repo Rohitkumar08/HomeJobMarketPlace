@@ -140,6 +140,16 @@ public class validation {
 //		
 //	}
 
+
+	public boolean validatePayPerHour() {
+		// TODO Auto-generated method stub
+		int checkHour=job.getPayPerHour();
+		if(checkHour<=0)
+			return true;
+		else
+		return false;
+	}
+
 	
 
 }

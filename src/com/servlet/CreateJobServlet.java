@@ -66,7 +66,11 @@ public class CreateJobServlet extends HttpServlet {
 				rd= request.getRequestDispatcher("errorJobCreation.jsp");
 				rd.forward(request, response);
 			}
-			
+			if((val.validatePayPerHour())){
+				request.setAttribute("errorParameter", "PayPerHour");
+				rd= request.getRequestDispatcher("errorJobCreation.jsp");
+				rd.forward(request, response);
+			}
 			
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block

@@ -11,6 +11,7 @@ import com.bean.Jobs;
 import com.bean.Member;
 import com.bean.Sitter;
 import com.service.FactoryUtil;
+import com.servletCP.ConnectionPool;
 import com.bean.Seeker;
 
 
@@ -22,11 +23,14 @@ public class UserData {
 	Seeker seeker = (Seeker) FactoryUtil.mapClassInstance.get(FactoryUtil.SEEKER);
 	private DBConnection con=new DBConnection();
 	private Connection connect= con.getconnection(); 
+	
+//	private ConnectionPool conPool= new ConnectionPool();
+//	private Connection connect = conPool.getConnection();
 	PreparedStatement ps;
 	
 	public boolean putUserData(Member mem){
 		 
-		String sql = "insert into users(uname, phone,uemail,utype,upassword) values(?,?,?,?,?)";
+		String sql = "insert into users(uname, phone,uemail,utype,upassword, status, ulastname) values(?,?,?,?,?, ?, ?)";
 		try {
 			ps = connect.prepareStatement(sql);
 			ps.setString(1, mem.getFirstName());
@@ -34,6 +38,8 @@ public class UserData {
 			ps.setString(3, mem.getEmail());
 			ps.setString(4, mem.getMemberType());
 			ps.setString(5, mem.getPassword());
+			ps.setString(6, "ACTIVE");
+			ps.setString(7,  "NULL");
 			
 			ps.executeUpdate();
 			System.out.println("******successfully registered*********");
@@ -454,13 +460,14 @@ public class UserData {
 
 	public boolean emailExist(String email) {
 		// TODO Auto-generated method stub
-		String sql = "select count(*) from users where uemail=? and ustatus='INACTIVE'";
+		String sql = "select uname from users where uemail=?";
 		int count=0;
 		try {
 			ps= connect.prepareStatement(sql);
 			ps.setString(1, email);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()){
+				if(rs.getString("uname")!= null)
 				count++;
 			
 			}
