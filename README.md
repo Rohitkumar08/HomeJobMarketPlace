@@ -1,5 +1,6 @@
 # HomeJobMarketPlace
-steps to use this project on your local machine:.
+steps to use this project on your local machine:
+[click on Clone or Download button(green color) on right side and download as zip]
 1. unzip the project
 2. download Apache tomcat on your machine.
 3. Now open eclipse and add the tomcat server in it.
